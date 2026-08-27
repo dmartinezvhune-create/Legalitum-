@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEGALITUM — Informe Operativo · Closer Search</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#060606;
+    --void-soft:#0F0F0F;
+    --void-card:#131313;
+    --line:#242220;
+    --gold:#C9A84C;
+    --gold-soft:#C9A96E;
+    --gold-dim:#8E763A;
+    --ink:#EDE7D8;
+    --ink-dim:#B4AC98;
+    --ink-faint:#807A6C;
+    --radius:6px;
+    --maxw:880px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--void);
+    color:var(--ink);
+    font-family:'DM Sans',sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,h4{
+    font-family:'Cormorant Garamond',serif;
+    color:var(--ink);
+    margin:0 0 .35em 0;
+    line-height:1.15;
+    font-weight:600;
+  }
+  .cinzel{font-family:'Cinzel',serif;}
+  a{color:var(--gold);}
+
+  .shell{display:flex; min-height:100vh;}
+  nav.sidebar{
+    width:256px; flex:0 0 256px;
+    background:var(--void-soft);
+    border-right:1px solid var(--line);
+    color:#C9C3B4;
+    position:sticky; top:0; height:100vh;
+    overflow-y:auto;
+    padding:32px 22px 40px;
+  }
+  .brandmark{display:flex; align-items:center; gap:12px; margin-bottom:6px;}
+  .brandmark svg{width:36px; height:36px; flex:0 0 auto;}
+  .brand-name{font-family:'Cinzel',serif; font-weight:600; font-size:.98rem; color:#fff; letter-spacing:.06em;}
+  .brand-name .search{color:var(--gold);}
+  .brand-tagline{
+    font-size:.65rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--gold-dim); margin:2px 0 6px 48px;
+  }
+  .brand-client{
+    font-size:.72rem; margin:0 0 24px 48px; color:var(--ink-faint);
+  }
+  .brand-client strong{color:var(--gold-soft);}
+  nav.sidebar .nav-group-label{
+    font-size:.66rem; text-transform:uppercase; letter-spacing:.12em;
+    color:var(--ink-faint); margin:22px 0 8px;
+  }
+  nav.sidebar a{
+    display:block; color:#B4AC98; text-decoration:none;
+    font-size:.87rem; padding:6px 0 6px 12px; border-left:2px solid transparent;
+    transition:.15s;
+  }
+  nav.sidebar a:hover{color:var(--gold-soft); border-left-color:var(--gold);}
+  nav.sidebar a.sourced{color:var(--ink); font-weight:700;}
+  nav.sidebar a.sourced:hover{color:var(--gold-soft);}
+  nav.sidebar .quicklinks{margin-top:28px; padding-top:18px; border-top:1px solid var(--line);}
+  nav.sidebar .quicklinks a{
+    background:rgba(201,168,76,.08); border-radius:4px; margin-bottom:6px;
+    padding:9px 10px 9px 12px; border-left:2px solid var(--gold); font-size:.81rem; color:var(--gold-soft);
+  }
+
+  main{flex:1; min-width:0;}
+
+  .topbar{
+    background:var(--void-card); color:var(--ink-dim);
+    padding:14px 44px; display:flex; gap:26px; flex-wrap:wrap;
+    align-items:center; font-size:.82rem;
+    border-bottom:1px solid var(--gold-dim);
+  }
+  .topbar strong{color:var(--gold); font-weight:600;}
+  .topbar .divider{width:1px; height:14px; background:var(--line);}
+
+  .hero{
+    padding:64px 44px 46px;
+    background:
+      radial-gradient(ellipse at 88% -10%, rgba(201,168,76,.10), transparent 55%),
+      var(--void);
+    border-bottom:1px solid var(--line);
+  }
+  .hero .eyebrow{
+    font-size:.72rem; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--gold); font-weight:600; margin-bottom:16px;
+    display:flex; align-items:center; gap:10px;
+    font-family:'Cinzel',serif;
+  }
+  .hero h1{font-size:2.7rem; max-width:760px; font-weight:600; color:#fff;}
+  .hero .lede{max-width:660px; font-size:1.06rem; color:var(--ink-dim); margin-top:16px;}
+  .hero .promise{
+    margin-top:26px; padding:20px 24px; background:var(--void-card);
+    border-left:2px solid var(--gold); border-radius:0 6px 6px 0;
+    max-width:660px; font-family:'Cormorant Garamond',serif; font-size:1.25rem;
+    font-weight:600; font-style:italic; color:var(--gold-soft);
+  }
+
+  section{padding:52px 44px; max-width:var(--maxw); margin:0 auto; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-tag{
+    font-size:.7rem; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--gold-dim); font-weight:600; margin-bottom:8px; font-family:'Cinzel',serif;
+  }
+  section h2{font-size:1.75rem; margin-bottom:.3em; color:#fff;}
+  section h3{font-size:1.18rem; margin-top:28px; color:var(--gold-soft); font-weight:600;}
+  section p{color:var(--ink-dim); max-width:70ch;}
+  .subnote{color:var(--ink-faint); font-size:.88rem;}
+
+  .seal-divider{
+    display:flex; align-items:center; gap:14px; margin:0 44px;
+    max-width:var(--maxw); margin-left:auto; margin-right:auto;
+  }
+  .seal-divider .line{flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent);}
+  .seal-divider .line.right{background:linear-gradient(90deg,transparent,var(--line));}
+  .seal-divider svg{width:22px; height:22px;}
+
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px;}
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:18px;}
+  .grid-4{display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:18px;}
+  .card{
+    background:var(--void-card); border:1px solid var(--line);
+    border-radius:var(--radius); padding:18px 20px;
+  }
+  .card h4{font-size:1.02rem; margin-bottom:6px; color:var(--ink);}
+  .card p{margin:0; font-size:.9rem; color:var(--ink-dim);}
+  .pill{
+    display:inline-block; font-size:.68rem; font-weight:600; letter-spacing:.06em; text-transform:uppercase;
+    padding:3px 10px; border-radius:2px; background:rgba(201,168,76,.1); color:var(--gold);
+    margin-bottom:8px; border:1px solid var(--gold-dim); font-family:'Cinzel',serif;
+  }
+
+  table{width:100%; border-collapse:collapse; margin-top:18px; font-size:.9rem; background:var(--void-card); border-radius:var(--radius); overflow:hidden;}
+  thead th{
+    background:#000; color:var(--gold); text-align:left; padding:11px 14px;
+    font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; font-weight:600; font-family:'Cinzel',serif;
+    border-bottom:1px solid var(--gold-dim);
+  }
+  tbody td{padding:11px 14px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-dim);}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:rgba(255,255,255,.015);}
+  td.label{font-weight:600; color:var(--ink); white-space:nowrap;}
+
+  .phase{display:grid; grid-template-columns:44px 1fr; gap:18px; margin-top:22px;}
+  .phase .num{
+    width:44px; height:44px; border-radius:50%; background:#000; border:1px solid var(--gold-dim);
+    color:var(--gold); display:flex; align-items:center; justify-content:center;
+    font-family:'Cinzel',serif; font-weight:600; font-size:.98rem;
+  }
+  .phase .num.active{background:var(--gold); color:#060606; border-color:var(--gold);}
+  .phase-body{padding-bottom:8px; border-left:1px solid var(--line); padding-left:18px; margin-left:22px; margin-top:-40px; padding-top:44px;}
+  .phase-body h4{margin-bottom:4px; font-size:1.05rem; color:var(--ink);}
+  .phase-body .result{
+    margin-top:8px; font-size:.85rem; background:rgba(201,168,76,.08); color:var(--gold-soft);
+    padding:8px 12px; border-radius:4px; display:inline-block; border:1px solid var(--gold-dim);
+  }
+
+  details.acc{
+    background:var(--void-card); border:1px solid var(--line); border-radius:var(--radius);
+    margin-top:10px; overflow:hidden;
+  }
+  details.acc summary{
+    cursor:pointer; list-style:none; padding:14px 18px; font-weight:600; color:var(--ink);
+    display:flex; justify-content:space-between; align-items:center; font-size:.95rem;
+  }
+  details.acc summary::-webkit-details-marker{display:none;}
+  details.acc summary::after{content:'+'; font-family:'Cormorant Garamond',serif; font-size:1.4rem; color:var(--gold); flex:0 0 auto;}
+  details.acc[open] summary::after{content:'–';}
+  details.acc[open] summary{border-bottom:1px solid var(--line);}
+  details.acc .acc-body{padding:14px 18px 18px; font-size:.9rem; color:var(--ink-dim);}
+  details.acc .acc-body p{margin:.5em 0;}
+  details.acc .acc-body .say{
+    background:rgba(201,168,76,.06); border-left:2px solid var(--gold); padding:10px 14px;
+    border-radius:0 4px 4px 0; margin:8px 0; font-style:italic; color:var(--ink);
+  }
+
+  .paybox{background:#000; border:1px solid var(--gold-dim); border-radius:8px; padding:28px 30px; margin-top:22px;}
+  .paybox h3{color:var(--gold); margin-top:0; font-family:'Cinzel',serif; font-size:1.1rem; letter-spacing:.03em;}
+  .pay-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px;}
+  .pay-card{background:var(--void-card); border:1px solid var(--line); border-radius:6px; padding:16px;}
+  .pay-card .plan{font-weight:600; font-size:.9rem; color:var(--ink); margin-bottom:2px;}
+  .pay-card .amount{font-family:'Cormorant Garamond',serif; font-weight:700; color:var(--gold); font-size:1.35rem; margin-bottom:6px;}
+  .pay-card .detail{font-size:.78rem; color:var(--ink-dim);}
+
+  .dodont{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px;}
+  .dodont .box{border-radius:var(--radius); padding:16px 18px; border:1px solid var(--line);}
+  .dodont .do{background:rgba(201,168,76,.05);}
+  .dodont .dont{background:rgba(150,40,30,.08); border-color:#4A2A24;}
+  .dodont h4{margin-bottom:8px; font-size:.85rem; text-transform:uppercase; letter-spacing:.06em; font-family:'Cinzel',serif;}
+  .dodont .do h4{color:var(--gold-soft);}
+  .dodont .dont h4{color:#D08370;}
+  .dodont ul{margin:0; padding-left:18px; font-size:.87rem; color:var(--ink-dim);}
+  .dodont li{margin-bottom:5px;}
+
+  .callout{
+    background:rgba(201,168,76,.07); border:1px solid var(--gold-dim); border-radius:var(--radius);
+    padding:16px 20px; margin-top:18px; font-size:.9rem; color:var(--ink-dim);
+  }
+  .callout strong{color:var(--gold);}
+
+  footer{
+    padding:34px 44px 60px; max-width:var(--maxw); margin:0 auto;
+    color:var(--ink-faint); font-size:.8rem; display:flex; align-items:center; gap:10px;
+  }
+  footer svg{width:18px; height:18px; opacity:.6;}
+
+  .checklist{list-style:none; padding:0; margin-top:16px;}
+  .checklist li{
+    display:flex; gap:10px; align-items:flex-start; padding:7px 0; font-size:.9rem; color:var(--ink-dim);
+    border-bottom:1px dashed var(--line);
+  }
+  .checklist li:last-child{border-bottom:none;}
+  .checklist .box{flex:0 0 15px; width:15px; height:15px; border:1px solid var(--gold-dim); border-radius:2px; margin-top:2px;}
+
+  @media (max-width:900px){
+    .shell{flex-direction:column;}
+    nav.sidebar{position:relative; width:100%; height:auto; flex:none;}
+    .grid-2, .grid-3, .grid-4, .pay-grid, .dodont{grid-template-columns:1fr;}
+    .hero, section, .topbar, footer{padding-left:22px; padding-right:22px;}
+    .seal-divider{margin-left:22px; margin-right:22px;}
+    .hero h1{font-size:2.1rem;}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <nav class="sidebar">
+    <div class="brandmark">
+      <svg viewBox="0 0 100 100" fill="none">
+        <polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#C9A84C" stroke-width="3" fill="#060606"/>
+        <polygon points="50,16 79,32 79,68 50,84 21,68 21,32" stroke="#8E763A" stroke-width="1.2" fill="none"/>
+        <path d="M33 50 L45 62 L69 36" stroke="#C9A84C" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="brand-name">CLOSER<span class="search"> SEARCH</span></div>
+      </div>
+    </div>
+    <div class="brand-tagline">Venta de packs de leads jurídicos</div>
+    <div class="brand-client">Proveedor: <strong>LEGALITUM</strong></div>
+
+    <div class="nav-group-label">El negocio</div>
+    <a href="#resumen">Resumen ejecutivo</a>
+    <a href="#modelo">Qué es LEGALITUM</a>
+    <a class="sourced" href="#avatar">Avatar del despacho comprador</a>
+    <a class="sourced" href="#dolores">Dolores y problema principal</a>
+    <a class="sourced" href="#analisis">Análisis del negocio</a>
+    <a class="sourced" href="#competencia">Análisis de competencia</a>
+    <a href="#modalidades">Tres modalidades de lead</a>
+    <a href="#disponibilidad">Disponibilidad por modalidad</a>
+    <a href="#packs">Packs Closer Search</a>
+    <a href="#rentabilidad">Calculadora de rentabilidad</a>
+    <a class="sourced" href="#prueba-social">Prueba social y autoridad</a>
+
+    <div class="nav-group-label">Operativa</div>
+    <a class="sourced" href="#embudo">Embudo de conversión</a>
+    <a class="sourced" href="#proceso">Proceso completo, paso a paso</a>
+    <a href="#equipo">Equipo y turnos</a>
+    <a class="sourced" href="#capacidad">Análisis de capacidad diaria</a>
+    <a class="sourced" href="#comisiones">Comisiones del setter-closer</a>
+    <a href="#crm">CRM Spaces Intelligence</a>
+    <a href="#criterios">Criterios de admisión del despacho</a>
+
+    <div class="nav-group-label">Venta</div>
+    <a class="sourced" href="#funciones">Funciones: setter y closer</a>
+    <a class="sourced" href="#guion-whatsapp">Guion de prellamada / WhatsApp</a>
+    <a class="sourced" href="#guion-llamada">Guion de llamada al despacho (cierre)</a>
+    <a class="sourced" href="#objeciones">Manejo de objeciones</a>
+    <a class="sourced" href="#cierre">Cierre y confirmación</a>
+    <a class="sourced" href="#limites">Límites y qué no prometer</a>
+    <a class="sourced" href="#checklist">Checklist pre-llamada</a>
+    <a class="sourced" href="#recursos">Recursos y enlaces</a>
+
+    <div class="quicklinks">
+      <a href="#packs">Packs y precios</a>
+      <a href="#crm">Demo con CRM real</a>
+      <a href="#limites">Límites y qué no prometer</a>
+      <a href="#proceso">Proceso completo</a>
+    </div>
+  </nav>
+
+  <main>
+    <div class="topbar">
+      <span><strong>Proveedor</strong> LEGALITUM · Red Nº1 de Abogados Asociados</span>
+      <span class="divider"></span>
+      <span>Packs: 1.400€ · 2.500€ · 7.500€</span>
+      <span class="divider"></span>
+      <span>CRM: Spaces Intelligence (GHL)</span>
+    </div>
+
+    <div class="hero">
+      <div class="eyebrow">
+        <svg viewBox="0 0 100 100" fill="none" width="16" height="16"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#C9A84C" stroke-width="6" fill="none"/></svg>
+        Informe operativo · Closer Search
+      </div>
+      <h1>LEGALITUM</h1>
+      <p class="lede">Modelo de negocio para la venta de packs mínimos de leads jurídicos cualificados a despachos de abogados, apoyado en un equipo de setter-closers y en el CRM Spaces Intelligence como herramienta de cierre.</p>
+      <div class="promise">"No vendemos un lead suelto. Vendemos un volumen garantizado y un sistema comercial listo para operar."</div>
+    </div>
+
+    <section id="resumen">
+      <div class="section-tag">00 · Resumen</div>
+      <h2>Resumen ejecutivo</h2>
+      <p>Cinco ideas para tener claras antes de vender esta cuenta.</p>
+
+      <div class="phase">
+        <div class="num active">1</div>
+        <div class="phase-body">
+          <h4>LEGALITUM es el proveedor de leads, Closer Search vende el pack</h4>
+          <p>LEGALITUM capta y cualifica clientes jurídicos a través de sus marcas consumer (como finiquitatudeuda.es) y opera la red de despachos asociados. Closer Search construye sobre esa base tres packs mínimos cerrados, con equipo propio de setter-closers dedicado a vender esos packs a despachos.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">2</div>
+        <div class="phase-body">
+          <h4>Tres packs, tres precios, un mismo argumento: coste de adquisición de cliente imbatible</h4>
+          <p>Pack 1: 100 leads cualificados por 1.400€. Pack 2: 50 leads ultra cualificados y agendados por 2.500€. Pack 3: 50 leads pre vendidos con hoja de encargo firmada por 7.500€ (solo bancario, revolving y financiación usura vehículos).</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">3</div>
+        <div class="phase-body">
+          <h4>El Pack 3 tiene stock limitado, los Packs 1 y 2 no</h4>
+          <p>Los leads pre vendidos dependen de la capacidad de cierre del equipo setter de LEGALITUM, por lo que suelen agotarse. Los leads cualificados y ultra cualificados dependen del flujo de tráfico digital, que es escalable y prácticamente sin límite de volumen.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">4</div>
+        <div class="phase-body">
+          <h4>El cierre se apoya en pruebas reales, no en promesas</h4>
+          <p>El activo diferencial de venta es el CRM Spaces Intelligence: durante la llamada de cierre, se entra en directo al CRM de otro cliente real para que el despacho vea con sus propios ojos el volumen y el movimiento de leads que está recibiendo. La objeción "¿y si los leads no son buenos?" se resuelve enseñando, no argumentando.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">5</div>
+        <div class="phase-body">
+          <h4>Estructura operativa ligera desde el arranque</h4>
+          <p>2 setter-closers en turnos de 4 horas cada uno, gestionando inicialmente unos 20 leads/día de forma combinada. Estructura pensada para escalar en número de personas y horas a medida que crece el volumen vendido.</p>
+        </div>
+      </div>
+      <div class="callout"><strong>Precios y packs vigentes en todo este informe:</strong> Pack 1 = 1.400€ (100 leads a 14€) · Pack 2 = 2.500€ (50 leads a 50€) · Pack 3 = 7.500€ (50 leads a 150€, solo bancario/revolving/usura vehículos). Cualquier cifra distinta que circule en materiales antiguos de LEGALITUM debe tratarse como referencia de proveedor, no como precio de venta de Closer Search.</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="modelo">
+      <div class="section-tag">01 · Proveedor</div>
+      <h2>Qué es LEGALITUM</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Detalle</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Propuesta</td><td>Red Nº1 de Abogados Asociados de LEGALITUM — leads precualificados de clientes jurídicos, con caso comprobado, entregados por zona de práctica</td></tr>
+          <tr><td class="label">Producto</td><td>Leads precualificados de: Ley de Segunda Oportunidad (LSO), familia, laboral, mercantil, bancario y 2ª Oportunidad</td></tr>
+          <tr><td class="label">Especialidades de mayor volumen</td><td>Tarjetas revolving, financiación usura (coches y otros consumos), cláusulas suelo en hipotecas</td></tr>
+          <tr><td class="label">Marca consumer activa</td><td>finiquitatudeuda.es — captación directa al deudor, formulario de 18 preguntas / 5 pasos, 3 filtros duros, validación de teléfono móvil, 60-90s de cumplimentación para quien encaja en el perfil</td></tr>
+          <tr><td class="label">Cifras de autoridad</td><td>Nº1 red de abogados asociados en LSO · +2.400 clientes derivados en 12 meses · 100% leads validados por teléfono</td></tr>
+          <tr><td class="label">Ventaja de captación</td><td>El despacho nunca invierte en publicidad; LEGALITUM asume el riesgo y el coste de captación y solo cobra por el lead entregado</td></tr>
+          <tr><td class="label">Web / contacto</td><td>www.legalitum.es · info@legalitum.es · socios@legalitum.com</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Por qué importa para la venta:</strong> el despacho comprador no está contratando "un lead", está comprando acceso a una máquina de captación ya construida (marca consumer posicionada, formulario de filtrado, call center de validación) que le resultaría muy caro y lento replicar por su cuenta.</div>
+    </section>
+
+    <section id="avatar">
+      <div class="section-tag">01b · Cliente ideal</div>
+      <h2>Avatar del despacho comprador</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Detalle</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Tipo de despacho</td><td>Pequeño o mediano, especializado en al menos una de: LSO, familia, laboral, mercantil, bancario/revolving/usura</td></tr>
+          <tr><td class="label">Situación actual</td><td>Capta clientes por referidos, boca a boca o campañas propias intermitentes, sin sistema comercial estable ni volumen predecible</td></tr>
+          <tr><td class="label">Estado frente a la captación</td><td>O bien invierte en publicidad propia sin control de resultados, o depende de captación pasiva y le faltan casos para llenar la agenda del equipo</td></tr>
+          <tr><td class="label">Creencia a romper</td><td>Piensan que comprar leads es arriesgado o de baja calidad; hay que demostrar con datos y con la demo en vivo del CRM que el lead ya viene filtrado y validado</td></tr>
+          <tr><td class="label">Perfil válido para el pack</td><td>Cumple los criterios de admisión (colegiado, equipo mínimo, atención rápida) y tiene capacidad real de absorber el volumen del pack elegido</td></tr>
+          <tr><td class="label">Perfil descartado</td><td>Despacho sin equipo suficiente para atender en menos de 15 minutos, sin procesos de firma digital, o que busca "probar con uno o dos leads sueltos" sin comprometerse al pack</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="dolores">
+      <div class="section-tag">01c · Psicografía</div>
+      <h2>Dolores y problema principal del despacho</h2>
+      <p>Problemas identificados que llevan a un despacho a considerar comprar un pack de leads.</p>
+      <table>
+        <thead><tr><th>Problema</th><th>Frecuencia</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Coste de adquisición de cliente alto vía publicidad propia (Google/Meta)</td><td>Muy alta</td></tr>
+          <tr><td class="label">Volumen de casos irregular, agenda del equipo con huecos</td><td>Alta</td></tr>
+          <tr><td class="label">Sin sistema ni CRM para dar seguimiento a los casos captados</td><td>Alta</td></tr>
+          <tr><td class="label">Desconfianza en la calidad de leads comprados a terceros por malas experiencias previas</td><td>Media-alta</td></tr>
+          <tr><td class="label">Falta de exclusividad en otros proveedores (el mismo caso ofrecido a varios despachos)</td><td>Media</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Problema principal ganador:</strong> el despacho no tiene un sistema de captación predecible y rentable, y ha tenido malas experiencias o desconfianza con proveedores de leads que no demuestran calidad ni exclusividad real.</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="analisis">
+      <div class="section-tag">02 · Negocio</div>
+      <h2>Análisis del negocio</h2>
+      <p>Por qué este modelo es rentable tanto para el despacho comprador como para Closer Search como vendedor del pack.</p>
+      <h3>Para el despacho comprador</h3>
+      <p>El coste de adquisición de cliente vía LEGALITUM es muy inferior al de campañas propias de Google/Meta o a comisiones de otros brokers de leads jurídicos. Con un honorario medio de 3.500€ por cliente cerrado, incluso una conversión conservadora del 6% sobre 80 leads cualificados (14€) genera 5 clientes por una inversión de 1.120€: un retorno superior a 14 veces la inversión.</p>
+      <h3>Para Closer Search como vendedor del pack</h3>
+      <p>Closer Search no capta el lead ni asume el riesgo de marketing: revende volumen ya cualificado por LEGALITUM, empaquetado en tres niveles de precio con márgenes crecientes cuanto más trabajado viene el lead. El margen no está en el spread por lead, sino en la velocidad de cierre: un despacho que compra un Pack de una vez (1.400€ / 2.500€ / 7.500€) es una venta de ticket alto cerrada en una sola llamada, sin necesidad de gestionar la relación lead a lead.</p>
+      <h3>Por qué el modelo escala</h3>
+      <ul>
+        <li>El tráfico de captación (marca consumer + formulario) es digital y escalable: no depende de la capacidad humana de LEGALITUM más allá del call center de validación.</li>
+        <li>El equipo de setter-closer de Closer Search vende packs cerrados, no leads sueltos: cada venta es de alto ticket (mínimo 1.400€) con un ciclo de venta corto.</li>
+        <li>La exclusividad zonal de LEGALITUM crea urgencia real (no artificial): "su provincia y su especialidad" son un recurso limitado, lo que ayuda a acelerar la decisión del despacho.</li>
+      </ul>
+      <h3>Riesgo principal a vigilar</h3>
+      <p>El cuello de botella real está en el Pack 3 (pre vendido): su disponibilidad depende de la capacidad de cierre del equipo setter de LEGALITUM, no de Closer Search. Vender ese pack sin confirmar stock disponible en el momento puede generar una promesa que LEGALITUM no pueda cumplir a tiempo.</p>
+    </section>
+
+    <section id="competencia">
+      <div class="section-tag">02b · Mercado</div>
+      <h2>Análisis de competencia</h2>
+      <p>Alternativas que un despacho puede considerar antes de comprar un pack de Closer Search, con su punto débil frente a nuestra propuesta.</p>
+      <table>
+        <thead><tr><th>Alternativa</th><th>Método</th><th>Punto débil frente al pack</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Campaña propia en Google/Meta Ads</td><td>El despacho gestiona su propia publicidad</td><td>Requiere inversión publicitaria continua, curva de aprendizaje y gestión; sin garantía de exclusividad ni de calidad del lead</td></tr>
+          <tr><td class="label">Otros brokers/redes de leads jurídicos</td><td>Venta de leads sueltos, normalmente sin exclusividad</td><td>Frecuentemente revenden el mismo caso a varios despachos; sin demo verificable del volumen real que se entrega</td></tr>
+          <tr><td class="label">Referidos y boca a boca</td><td>Captación pasiva, sin coste directo</td><td>Volumen impredecible, no escalable, dependiente de la reputación acumulada</td></tr>
+          <tr><td class="label">Directorios y portales legales (páginas amarillas jurídicas)</td><td>Presencia pagada en listados</td><td>Tráfico frío sin cualificar, conversión baja, sin validación telefónica previa</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Ventaja competitiva del pack:</strong> ningún competidor combina cualificación por IA + call center, exclusividad zonal real, garantía de no reventa y, sobre todo, la posibilidad de que el despacho vea con sus propios ojos el volumen real de un cliente activo antes de comprar (demo en vivo con Spaces Intelligence).</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="modalidades">
+      <div class="section-tag">03 · Producto base</div>
+      <h2>Tres modalidades de lead (LEGALITUM)</h2>
+      <p>Base sobre la que se construyen los packs de Closer Search. Nótese que las cifras de conversión difieren según la fuente de LEGALITUM (web comercial vs. script de llamada interno); se muestran ambas por transparencia.</p>
+      <table>
+        <thead><tr><th>Modalidad</th><th>Precio/lead</th><th>Qué recibe el despacho</th><th>Conv. 1er mes (web)</th><th>Conv. 1er mes (script)</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Cualificado</td><td>14€</td><td>Validado por IA y call center. Interés confirmado, teléfono verificado</td><td>6%</td><td>20-30%</td></tr>
+          <tr><td class="label">Ultra cualificado y agendado</td><td>50€</td><td>Despacho pre vendido en llamada + cita agendada para que el abogado le atienda</td><td>8%</td><td>50-70%</td></tr>
+          <tr><td class="label">Pre vendido</td><td>150€</td><td>Hoja de encargo firmada por el cliente, cerrada por el equipo setter/closer de LEGALITUM. Entrega inmediata al CRM</td><td>12%</td><td>100%</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Garantía de exclusividad de LEGALITUM:</strong> los clientes son exclusivos para el despacho, no se revenden a otros despachos. En modalidad pre vendida, un único despacho por zona y especialidad.</div>
+    </section>
+
+    <section id="disponibilidad">
+      <div class="section-tag">03b · Stock</div>
+      <h2>Disponibilidad por modalidad</h2>
+      <div class="dodont">
+        <div class="box do">
+          <h4>Sin límite de volumen</h4>
+          <ul>
+            <li>Leads cualificados (14€) — depende del flujo de tráfico digital, escalable</li>
+            <li>Leads ultra cualificados (50€) — depende del call center de LEGALITUM, con capacidad amplia</li>
+          </ul>
+        </div>
+        <div class="box dont">
+          <h4>Stock limitado, se agota con frecuencia</h4>
+          <ul>
+            <li>Leads pre vendidos (150€) — depende de la capacidad de cierre del equipo setter de LEGALITUM, menor cantidad disponible</li>
+            <li>Confirmar disponibilidad real del Pack 3 antes de prometer plazo de entrega al despacho</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout"><strong>Uso comercial de esta limitación:</strong> el Pack 3 se vende como "cupos limitados, sujeto a disponibilidad" — es un gancho de urgencia real, no artificial. Los Packs 1 y 2 se venden como oferta abierta y permanente, sin miedo a quedarse sin stock.</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="packs">
+      <div class="section-tag">04 · Oferta</div>
+      <h2>Packs mínimos de venta — Closer Search</h2>
+      <p>Tres packs cerrados, pensados para venderse en una sola llamada de cierre, con precio de entrada distinto según capacidad comercial del despacho.</p>
+      <div class="paybox">
+        <h3>Packs disponibles</h3>
+        <div class="pay-grid">
+          <div class="pay-card">
+            <div class="plan">Pack 1 · Cualificados</div>
+            <div class="amount">1.400€</div>
+            <div class="detail">100 leads a 14€/lead. Sin límite de disponibilidad</div>
+          </div>
+          <div class="pay-card">
+            <div class="plan">Pack 2 · Ultra cualificados</div>
+            <div class="amount">2.500€</div>
+            <div class="detail">50 leads a 50€/lead, ya agendados. Sin límite de disponibilidad</div>
+          </div>
+          <div class="pay-card">
+            <div class="plan">Pack 3 · Pre vendidos</div>
+            <div class="amount">7.500€</div>
+            <div class="detail">50 leads a 150€/lead, hoja de encargo firmada. Disponibilidad limitada</div>
+          </div>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th>Pack</th><th>Cantidad</th><th>Precio/lead</th><th>Total</th><th>Restricción</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Pack 1</td><td>100 leads cualificados</td><td>14€</td><td>1.400€</td><td>Ninguna</td></tr>
+          <tr><td class="label">Pack 2</td><td>50 leads ultra cualificados + agendados</td><td>50€</td><td>2.500€</td><td>Ninguna</td></tr>
+          <tr><td class="label">Pack 3</td><td>50 leads pre vendidos (hoja de encargo firmada)</td><td>150€</td><td>7.500€</td><td>Solo especialidades: bancario, revolving, financiación usura vehículos</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Nota de volumen mínimo del proveedor:</strong> LEGALITUM marca un volumen mínimo de 80 leads/mes en sus condiciones estándar. El Pack 1 (100 leads) lo cubre de sobra; el Pack 2 y el Pack 3 (50 leads cada uno) quedan por debajo si se interpretan como cifra mensual recurrente. Al venderse como packs cerrados de una sola vez, conviene confirmar con LEGALITUM que esta condición no aplica a compras puntuales antes de comprometerla con el despacho.</div>
+    </section>
+
+    <section id="rentabilidad">
+      <div class="section-tag">04b · Argumento de venta</div>
+      <h2>Calculadora de rentabilidad para el despacho</h2>
+      <p>Ejemplo de referencia de LEGALITUM, útil como argumento de venta al mostrar el retorno esperado sobre el Pack 1.</p>
+      <table>
+        <thead><tr><th>Variable</th><th>Valor</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Volumen</td><td>80 leads/mes (dentro del Pack 1 de 100)</td></tr>
+          <tr><td class="label">Modalidad</td><td>Cualificado, 14€/lead</td></tr>
+          <tr><td class="label">% conversión a cliente</td><td>6% (mín. 4% · media 1er mes 6-8%)</td></tr>
+          <tr><td class="label">Honorarios medios por cliente</td><td>3.500€</td></tr>
+          <tr><td class="label">Inversión en el servicio</td><td>1.120€</td></tr>
+          <tr><td class="label">Clientes cerrados</td><td>5</td></tr>
+          <tr><td class="label">Facturación pendiente por cobrar</td><td>17.500€</td></tr>
+          <tr><td class="label">Beneficio total del despacho</td><td>16.380€ (facturación − inversión en captación)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Cómo usarlo en llamada:</strong> ajustar las variables (volumen, modalidad, honorarios, conversión) a la situación real del despacho durante la llamada, para que el retorno se sienta calculado "para él" y no como una cifra genérica de folleto.</div>
+    </section>
+
+    <section id="prueba-social">
+      <div class="section-tag">04c · Autoridad</div>
+      <h2>Prueba social y autoridad</h2>
+      <p>Activos de credibilidad que respaldan el argumentario, y los que faltan por construir.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h4>Ya disponibles</h4>
+          <p>Cifras de autoridad de LEGALITUM: Nº1 red de abogados asociados en LSO, +2.400 clientes derivados en 12 meses, 100% leads validados por teléfono. Uso directo en la fase de pitch de valor.</p>
+        </div>
+        <div class="card">
+          <h4>Pendientes de recopilar</h4>
+          <p>Testimonios de despachos ya activos con el pack de Closer Search, casos de éxito con cifras reales de conversión, y grabaciones de llamadas de cierre (tipo Fathom) para formar al equipo de setter-closers con ejemplos reales.</p>
+        </div>
+      </div>
+      <div class="callout"><strong>Prioridad recomendada:</strong> en cuanto se cierre el primer pack con un despacho, capturar su testimonio y, si el despacho lo autoriza, usar su CRM real como referencia de demo para las siguientes llamadas de venta.</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="embudo">
+      <div class="section-tag">04d · Embudo</div>
+      <h2>Embudo de conversión</h2>
+      <p>Resumen visual del recorrido completo, del prospecto frío al pack vendido y en gestión.</p>
+      <div class="phase">
+        <div class="num active">1</div>
+        <div class="phase-body"><h4>Prospección</h4><p>Identificación de despachos por zona/especialidad (llamada en frío o referidos)</p></div>
+      </div>
+      <div class="phase">
+        <div class="num active">2</div>
+        <div class="phase-body"><h4>Prellamada / WhatsApp</h4><p>Primer contacto breve para confirmar interés y agendar la llamada de cualificación</p></div>
+      </div>
+      <div class="phase">
+        <div class="num active">3</div>
+        <div class="phase-body"><h4>Cualificación</h4><p>Verificación de criterios de admisión del despacho</p></div>
+      </div>
+      <div class="phase">
+        <div class="num active">4</div>
+        <div class="phase-body"><h4>Demo en vivo (Spaces Intelligence)</h4><p>Prueba visual del volumen real de leads en el CRM de un cliente activo</p></div>
+      </div>
+      <div class="phase">
+        <div class="num active">5</div>
+        <div class="phase-body"><h4>Cierre del pack</h4><p>Elección y cierre del pack (1.400€ / 2.500€ / 7.500€) en la misma sesión</p></div>
+      </div>
+      <div class="phase">
+        <div class="num active">6</div>
+        <div class="phase-body"><h4>Pago y activación</h4><p>50% adelantado, 50% al completar el volumen del pack</p></div>
+      </div>
+      <div class="phase">
+        <div class="num active">7</div>
+        <div class="phase-body"><h4>Entrega y gestión en CRM</h4><p>Los leads del pack se entregan y siguen en Spaces Intelligence</p></div>
+      </div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="proceso">
+      <div class="section-tag">05 · Operativa</div>
+      <h2>Proceso completo, paso a paso</h2>
+      <p>Del primer contacto con el despacho hasta la entrega del pack de leads.</p>
+      <div class="phase">
+        <div class="num active">1</div>
+        <div class="phase-body">
+          <h4>Prospección y primer contacto</h4>
+          <p>El setter-closer identifica o recibe el contacto del despacho (provincia + especialidad) y realiza la llamada de apertura, presentándose como parte del programa de selección de despachos, no como un vendedor genérico de leads.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">2</div>
+        <div class="phase-body">
+          <h4>Cualificación del despacho</h4>
+          <p>Se confirma zona/exclusividad, especialidad y experiencia, capacidad de atención del equipo (mínimo 2 personas, respuesta en menos de 15 minutos), y procesos de firma digital. Un despacho que no cumple criterios no avanza a la fase de venta.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">3</div>
+        <div class="phase-body">
+          <h4>Demostración en vivo con el CRM Spaces Intelligence</h4>
+          <p>En la misma llamada o en una videollamada de seguimiento, el closer entra con el despacho al CRM Spaces Intelligence (GHL) de un cliente real ya activo, para que vea en directo el volumen y el movimiento real de leads que está recibiendo un cliente equivalente. Este paso es el que más ayuda a cerrar: convierte una promesa en una prueba visual.</p>
+          <span class="result">Resultado: el despacho deja de comprar "una promesa de leads" y pasa a comprar "lo que acaba de ver funcionando"</span>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">4</div>
+        <div class="phase-body">
+          <h4>Presentación de los tres packs y recomendación</h4>
+          <p>Se presentan siempre los tres packs (1.400€ / 2.500€ / 7.500€), explicando que el precio se corresponde con el nivel de trabajo previo del lead, y se recomienda el pack según la capacidad comercial real del despacho detectada en la cualificación.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">5</div>
+        <div class="phase-body">
+          <h4>Cierre de la venta del pack</h4>
+          <p>El closer cierra la compra del pack elegido en la misma sesión siempre que sea posible. Si el Pack 3 está solicitado, se confirma disponibilidad real con LEGALITUM antes de comprometer plazo de entrega.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">6</div>
+        <div class="phase-body">
+          <h4>Pago y activación</h4>
+          <p>Condiciones de pago heredadas de LEGALITUM: 50% adelantado y 50% al completar el volumen del pack contratado.</p>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="num active">7</div>
+        <div class="phase-body">
+          <h4>Entrega y seguimiento en el CRM</h4>
+          <p>Los leads del pack se entregan y gestionan a través del CRM Spaces Intelligence, con embudo comercial, automatización de WhatsApp y panel de KPIs, replicando el mismo sistema que se enseñó en la demo de cierre.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="equipo">
+      <div class="section-tag">06 · Equipo</div>
+      <h2>Equipo y turnos</h2>
+      <p>Estructura inicial de arranque del proyecto, pensada para escalar según crezca el volumen de packs vendidos.</p>
+      <table>
+        <thead><tr><th>Rol</th><th>Nº personas</th><th>Duración de turno</th><th>Leads/día gestionados (objetivo inicial)</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Setter-Closer</td><td>2</td><td>4 horas cada uno</td><td>~20 leads/día combinados</td></tr>
+        </tbody>
+      </table>
+      <h3>Lectura de capacidad</h3>
+      <ul>
+        <li>~20 leads/día entre 2 personas equivale a ~10 leads/persona/día, o ~2,5 leads/hora por persona en su turno de 4 horas.</li>
+        <li>A ritmo de 20 leads/día, el Pack 1 (100 leads) se cubriría en aproximadamente 5 días laborables de gestión de leads.</li>
+        <li>Con ~22 días laborables al mes, la capacidad inicial equivale a un techo aproximado de 440 leads/mes gestionados, antes de necesitar ampliar equipo u horas.</li>
+      </ul>
+      <div class="callout"><strong>Nota operativa:</strong> al ser dos turnos de 4 horas, conviene definir si son escalonados (por ejemplo, mañana y tarde) para ampliar la franja horaria de atención al despacho, o solapados para reforzar las horas de mayor actividad. Esta decisión de horario concreto queda pendiente de definir con el equipo.</div>
+    </section>
+
+    <section id="capacidad">
+      <div class="section-tag">06b · Capacidad</div>
+      <h2>Análisis de capacidad diaria — 20 leads con 2 setter-closer</h2>
+      <p>Desglose de lo que implica gestionar 20 leads/día con 2 personas en jornadas independientes de 4 horas cada una, ambas haciendo tanto la contactación como el cierre.</p>
+      <table>
+        <thead><tr><th>Variable</th><th>Valor</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Personas</td><td>2 (cada una setter-closer, función completa)</td></tr>
+          <tr><td class="label">Duración de jornada</td><td>4 horas cada una</td></tr>
+          <tr><td class="label">Horas-persona/día combinadas</td><td>8 horas (4h + 4h)</td></tr>
+          <tr><td class="label">Leads/día objetivo</td><td>20</td></tr>
+          <tr><td class="label">Leads/persona/día</td><td>10</td></tr>
+          <tr><td class="label">Leads/hora por persona</td><td>2,5</td></tr>
+          <tr><td class="label">Tiempo medio disponible por lead</td><td>~24 minutos (incluyendo contactación y, si procede, cierre en la misma llamada)</td></tr>
+        </tbody>
+      </table>
+      <h3>Lectura frente a los packs</h3>
+      <ul>
+        <li><strong>Pack 1 (100 leads):</strong> a 20 leads/día, se cubre la gestión completa en 5 días laborables.</li>
+        <li><strong>Pack 2 (50 leads):</strong> se cubre en 2,5 días laborables.</li>
+        <li><strong>Pack 3 (50 leads):</strong> el cuello de botella no es la capacidad del equipo de Closer Search, sino el stock limitado de LEGALITUM (ver sección "Disponibilidad por modalidad").</li>
+        <li><strong>Techo mensual estimado:</strong> con ~22 días laborables/mes a 20 leads/día, la capacidad ronda los 440 leads/mes gestionados, es decir, más de 4 Packs 1 completos al mes solo en volumen de gestión (sin contar el tiempo dedicado a la prospección y venta de nuevos despachos, que compite por las mismas horas).</li>
+      </ul>
+      <div class="callout"><strong>Punto de atención:</strong> las 24 minutos/lead son un promedio de gestión de leads ya entregados por LEGALITUM, no incluyen el tiempo de prospección y cierre de nuevos despachos compradores de packs — esa es una actividad distinta que compite por las mismas 8 horas-persona/día y conviene dimensionar aparte a medida que crezca el volumen de despachos activos.</div>
+    </section>
+
+    <section id="comisiones">
+      <div class="section-tag">06c · Retribución</div>
+      <h2>Comisiones del setter-closer</h2>
+      <p>Sin salario fijo: la retribución del setter-closer es 100% a comisión, con un 15% uniforme en los tres packs.</p>
+      <table>
+        <thead><tr><th>Pack</th><th>Precio de venta</th><th>Comisión (15%)</th><th>Neto para Closer Search</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Pack 1 · Cualificados</td><td>1.400€</td><td>210€</td><td>1.190€</td></tr>
+          <tr><td class="label">Pack 2 · Ultra cualificados</td><td>2.500€</td><td>375€</td><td>2.125€</td></tr>
+          <tr><td class="label">Pack 3 · Pre vendidos</td><td>7.500€</td><td>1.125€</td><td>6.375€</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Nota:</strong> el 15% se aplica sobre el importe de venta del pack cerrado, no sobre el margen neto de Closer Search. Al ser retribución 100% variable, el interés del setter-closer está totalmente alineado con priorizar el cierre de packs de mayor ticket (Pack 3) cuando haya disponibilidad, y con volumen de cierres cuando se trabaje con los Packs 1 y 2.</div>
+    </section>
+
+    <section id="crm">
+      <div class="section-tag">07 · Herramienta de cierre</div>
+      <h2>CRM Spaces Intelligence (GHL)</h2>
+      <table>
+        <thead><tr><th>Variable</th><th>Detalle</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Nombre</td><td>Spaces Intelligence</td></tr>
+          <tr><td class="label">Tecnología base</td><td>GoHighLevel (GHL)</td></tr>
+          <tr><td class="label">Tipo</td><td>CRM personalizado de Closer Search</td></tr>
+          <tr><td class="label">Uso principal en venta</td><td>Herramienta de demostración en vivo durante la llamada de cierre</td></tr>
+        </tbody>
+      </table>
+      <h3>Cómo se usa para ayudar a cerrar la venta</h3>
+      <p>La técnica central es entrar con el propio despacho prospecto a ver, en directo, el caso real de otro cliente dentro de su CRM: así el despacho observa con sus propios ojos el movimiento y el volumen de leads que recibe un cliente normal ya activo, en lugar de fiarse solo de cifras contadas por teléfono.</p>
+      <div class="callout"><strong>Por qué funciona:</strong> convierte el argumento de venta de "confía en nuestras cifras" a "mira tú mismo el sistema funcionando en tiempo real". Reduce directamente la objeción típica de "¿y si los leads no son buenos?" o "¿esto realmente genera volumen?", porque la respuesta ya no es verbal, es visual y verificable en el momento.</div>
+      <h3>Qué debe estar preparado antes de cada llamada</h3>
+      <ul>
+        <li>Tener seleccionado de antemano el CRM de un cliente real representativo de una especialidad similar a la del despacho prospecto.</li>
+        <li>Confirmar que ese cliente ha autorizado mostrar su panel como referencia (o usar una vista anonimizada si no está confirmado).</li>
+        <li>Tener acceso ya abierto o de acceso rápido para no perder ritmo en medio de la llamada de cierre.</li>
+      </ul>
+    </section>
+
+    <section id="criterios">
+      <div class="section-tag">08 · Filtro de entrada</div>
+      <h2>Criterios de admisión del despacho (heredados de LEGALITUM)</h2>
+      <p>No todos los despachos deben avanzar a la fase de venta. Si un despacho no cumple los criterios, el pack no se activa.</p>
+      <table>
+        <thead><tr><th>Criterio</th><th>Detalle</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Colegiado en ejercicio</td><td>Alta activa en el ICA correspondiente y sin sanciones vigentes</td></tr>
+          <tr><td class="label">Equipo mínimo</td><td>2 personas con capacidad real de atención comercial en menos de 15 minutos</td></tr>
+          <tr><td class="label">Horario de atención</td><td>9-19h, contacto del lead el mismo día en que entra al CRM</td></tr>
+          <tr><td class="label">Experiencia demostrable</td><td>Mínimo 12 meses en LSO, familia, laboral o mercantil</td></tr>
+          <tr><td class="label">Procesos documentados</td><td>Contratos, honorarios y hoja de encargo listos para firmar en digital</td></tr>
+          <tr><td class="label">Exclusividad zonal</td><td>Compromiso de un único despacho por área geográfica</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="funciones">
+      <div class="section-tag">08c · Roles</div>
+      <h2>Funciones: setter y closer</h2>
+      <p>Son dos funciones distintas dentro del proceso de venta, pero las ejerce <strong style="color:var(--gold-soft);">la misma persona</strong> en cada una de las 2 posiciones del equipo: cada setter-closer hace de setter en la fase de prellamada y de closer en la fase de llamada de cierre, sin reparto de tareas entre personas distintas.</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="pill">Función Setter</div>
+          <h4>Prospección y agendado</h4>
+          <p>Primer contacto con el despacho (llamada en frío, WhatsApp o email breve). Objetivo único: confirmar interés real y conseguir la cita, sin hablar todavía de precios ni packs. Entregable: llamada agendada con día y hora confirmados.</p>
+        </div>
+        <div class="card">
+          <div class="pill">Función Closer</div>
+          <h4>Cualificación, demo y cierre</h4>
+          <p>Llamada de venta completa: cualificación del despacho, demo en vivo con Spaces Intelligence, presentación de los tres packs y cierre de la venta en la misma sesión cuando es posible. Entregable: pack vendido y pago del 50% inicial confirmado.</p>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th>Función</th><th>Cuándo actúa</th><th>Objetivo</th><th>Entregable</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Setter</td><td>Antes de la llamada de venta</td><td>Confirmar interés y conseguir la cita</td><td>Llamada agendada</td></tr>
+          <tr><td class="label">Closer</td><td>Durante la llamada de venta</td><td>Cualificar, demostrar valor y cerrar el pack</td><td>Pack vendido + pago inicial</td></tr>
+        </tbody>
+      </table>
+      <div class="callout"><strong>Por qué importa distinguirlas aunque sea la misma persona:</strong> cada función tiene un objetivo y un guion distintos (ver secciones siguientes). Separarlas ayuda a que el setter-closer sepa en qué momento del proceso está y qué debe conseguir en cada uno, en vez de mezclar el discurso de prellamada con el de cierre.</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="guion-whatsapp">
+      <div class="section-tag">08b · Setter</div>
+      <h2>Guion de prellamada / WhatsApp</h2>
+      <p>Primer contacto, previo a la llamada de cualificación y cierre. Objetivo único: confirmar interés real y agendar la llamada, sin entrar todavía en precios ni packs.</p>
+      <details class="acc" open>
+        <summary>1. Apertura por WhatsApp o email breve</summary>
+        <div class="acc-body">
+          <p class="say">"Hola [Nombre], soy [Tu nombre] de Closer Search. Trabajamos con LEGALITUM entregando leads jurídicos cualificados a despachos seleccionados en [zona/especialidad]. ¿Tienen 15 minutos esta semana para ver si su despacho encaja en el programa?"</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>2. Si responde con interés</summary>
+        <div class="acc-body">
+          <p class="say">"Genial. En la llamada le enseño en directo, con datos reales, el volumen de leads que recibe un despacho como el suyo. ¿Le viene mejor mañana por la mañana o por la tarde?"</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>3. Si no responde tras el primer mensaje</summary>
+        <div class="acc-body">
+          <p class="say">"Le dejo por aquí igualmente: estamos activando cupos por zona y especialidad, y [su provincia] sigue libre por ahora. Cuando le venga bien, seguimos la conversación."</p>
+        </div>
+      </details>
+      <div class="callout"><strong>Regla:</strong> este guion nunca menciona precios de packs ni condiciones de pago — su único objetivo es conseguir la llamada. Los precios se presentan en el guion de cierre (sección siguiente), después de la demo en vivo.</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="guion-llamada">
+      <div class="section-tag">09 · Closer</div>
+      <h2>Guion de llamada al despacho (cierre)</h2>
+      <p>Adaptado del script de LEGALITUM al modelo de packs de Closer Search. Se usa una vez agendada la llamada desde el guion de prellamada. Objetivo: cualificar al despacho, hacer la demo en vivo del CRM y cerrar el pack en la misma sesión cuando sea posible.</p>
+      <details class="acc" open>
+        <summary>1. Saludo + presentación (15-20s)</summary>
+        <div class="acc-body">
+          <p class="say">"Buenos días, ¿me pone con [Nombre del contacto]? Soy [Tu nombre], de Closer Search. Trabajamos con la red de LEGALITUM entregando packs cerrados de leads jurídicos ya cualificados a despachos seleccionados de [especialidad] en [zona/provincia]. ¿Le concedo dos minutos?"</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>2. Cualificación rápida</summary>
+        <div class="acc-body">
+          <p>Zona y exclusividad, especialidad y experiencia (mínimo 12 meses), capacidad de atención del equipo (mínimo 2 personas, respuesta en menos de 15 minutos), procesos y hoja de encargo digital, y nivel de pack que mejor encaja con su capacidad comercial.</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>3. Demo en vivo con Spaces Intelligence</summary>
+        <div class="acc-body">
+          <p class="say">"Le propongo algo mejor que explicárselo: le enseño ahora mismo, en el CRM real de un cliente activo, el volumen de leads que está recibiendo un despacho como el suyo. Así ve el movimiento con sus propios ojos antes de decidir."</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>4. Presentación de los tres packs</summary>
+        <div class="acc-body">
+          <p class="say">"Tenemos tres packs cerrados: 100 leads cualificados por 1.400€, 50 leads ultra cualificados y agendados por 2.500€, o 50 leads pre vendidos con hoja de encargo firmada por 7.500€ — estos últimos solo para bancario, revolving o financiación usura de vehículos, y con disponibilidad limitada. Según lo que me cuenta, le recomiendo empezar por [pack recomendado]."</p>
+        </div>
+      </details>
+      <details class="acc">
+        <summary>5. Cierre en la misma sesión</summary>
+        <div class="acc-body">
+          <p class="say">"Con las condiciones de pago son 50% ahora y 50% al completar el volumen del pack. ¿Lo activamos hoy mismo para reservar su zona y especialidad?"</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="objeciones">
+      <div class="section-tag">10 · Objeciones</div>
+      <h2>Manejo de objeciones</h2>
+      <details class="acc" open>
+        <summary>"Ya tengo suficientes clientes"</summary>
+        <div class="acc-body"><p class="say">"Me alegra, buscamos despachos que sepan convertir. El modelo es escalable: cuando necesita volumen, abrimos tráfico; cuando está saturado, lo cerramos. Usted controla el ritmo con el pack que elija."</p></div>
+      </details>
+      <details class="acc">
+        <summary>"14€ por lead me parece caro"</summary>
+        <div class="acc-body"><p class="say">"Con 80 de los 100 leads del Pack 1 y una conversión conservadora del 6%, son 5 clientes. Con un honorario medio de 3.500€, son 17.500€ de facturación por una inversión de 1.120€ dentro del pack. Y si prefiere no dedicar esfuerzo comercial, están el Pack 2 o el Pack 3, ya con el trabajo comercial hecho."</p></div>
+      </details>
+      <details class="acc">
+        <summary>"¿Por qué el Pack 3 cuesta 7.500€?"</summary>
+        <div class="acc-body"><p class="say">"Porque no son leads, son 50 clientes cerrados: hoja de encargo firmada, listos para trabajar el caso. Frente a un honorario medio de 3.500€ por cliente, 150€ por cliente cerrado es el coste de adquisición más bajo del mercado. Eso sí, la disponibilidad es limitada."</p></div>
+      </details>
+      <details class="acc">
+        <summary>"¿Y si los leads no son buenos?"</summary>
+        <div class="acc-body"><p>No se argumenta: se muestra. Volver al paso de la demo en vivo con Spaces Intelligence y enseñar el movimiento real de un cliente activo antes de seguir con la objeción de precio.</p></div>
+      </details>
+      <details class="acc">
+        <summary>"¿Vendéis el mismo lead a varios despachos?"</summary>
+        <div class="acc-body"><p class="say">"No. Sus clientes son exclusivos para usted y no se revenden. En el Pack 3, además, solo trabajamos con un despacho por zona y especialidad."</p></div>
+      </details>
+      <details class="acc">
+        <summary>"Tengo que hablarlo con mi socio"</summary>
+        <div class="acc-body"><p class="say">"Claro, es una decisión estratégica. Le envío un resumen de los tres packs con la demo que acaba de ver, y agendamos una llamada breve con los dos juntos para resolver dudas."</p></div>
+      </details>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="cierre">
+      <div class="section-tag">11 · Cierre</div>
+      <h2>Cierre y confirmación</h2>
+      <p class="say" style="background:rgba(201,168,76,.06); border-left:2px solid var(--gold); padding:12px 16px; border-radius:0 4px 4px 0; font-style:italic;">"Perfecto, activamos el [Pack elegido] por [importe]. Le confirmo por email las condiciones de pago: 50% ahora y 50% al completar el volumen, más el acceso al CRM Spaces Intelligence para el seguimiento. ¿A qué correo se lo envío?"</p>
+      <div class="callout"><strong>Regla de oro:</strong> siempre repetir pack, importe, condiciones de pago y siguiente paso antes de colgar. Reducir la fricción de la confirmación al mínimo.</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="limites">
+      <div class="section-tag">11b · Límites</div>
+      <h2>Límites y qué no prometer</h2>
+      <p>Sección crítica al tratarse de servicios jurídicos y financieros: lo que el setter-closer puede decir con seguridad, y lo que nunca debe prometer al despacho.</p>
+      <div class="dodont">
+        <div class="box do">
+          <h4>Se puede decir</h4>
+          <ul>
+            <li>El pack entrega un volumen exacto y cerrado de leads (100 / 50 / 50 según el pack)</li>
+            <li>Los leads están validados por IA, call center y verificación telefónica antes de entrega</li>
+            <li>Los clientes son exclusivos para el despacho, sin reventa a terceros</li>
+            <li>Las cifras de conversión mostradas son las comunicadas por LEGALITUM, con rangos según la fuente (ver sección de modalidades)</li>
+          </ul>
+        </div>
+        <div class="box dont">
+          <h4>Nunca prometer</h4>
+          <ul>
+            <li>Un número exacto de clientes cerrados o de facturación garantizada para el despacho</li>
+            <li>Que todos los leads del pack convertirán o cumplirán el perfil ideal en el 100% de los casos</li>
+            <li>Disponibilidad del Pack 3 sin haberla confirmado en el momento con LEGALITUM</li>
+            <li>Cualquier política de devolución o reembolso no confirmada por escrito con LEGALITUM</li>
+            <li>Plazos de entrega exactos para el Pack 3 sin verificar stock real</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout"><strong>Pendiente de confirmar con LEGALITUM:</strong> este informe no recoge una política oficial de devolución o compensación si un pack entrega leads que no cumplen el perfil pactado. Si un despacho pregunta por ello, el equipo debe responder con el compromiso de validación ya descrito (IA + call center + teléfono verificado), sin citar condiciones económicas de devolución que no estén confirmadas por LEGALITUM.</div>
+    </section>
+
+    <div class="seal-divider"><span class="line"></span>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="line right"></span></div>
+
+    <section id="checklist">
+      <div class="section-tag">12 · Checklist</div>
+      <h2>Checklist pre-llamada</h2>
+      <ul class="checklist">
+        <li><span class="box"></span> Nombre del contacto y del despacho</li>
+        <li><span class="box"></span> Provincia / zona y especialidad a activar</li>
+        <li><span class="box"></span> Tamaño del equipo del despacho (¿mínimo 2 personas?)</li>
+        <li><span class="box"></span> Pack recomendado según capacidad comercial (1.400€ / 2.500€ / 7.500€)</li>
+        <li><span class="box"></span> Disponibilidad real del Pack 3 confirmada con LEGALITUM antes de ofrecerlo</li>
+        <li><span class="box"></span> Acceso preparado al CRM Spaces Intelligence de un cliente de referencia para la demo en vivo</li>
+        <li><span class="box"></span> Criterios de admisión del despacho confirmados antes de vender el pack</li>
+        <li><span class="box"></span> Email de confirmación y condiciones de pago listos para enviar</li>
+      </ul>
+    </section>
+
+    <section id="recursos">
+      <div class="section-tag">13 · Recursos</div>
+      <h2>Recursos y enlaces de referencia</h2>
+      <table>
+        <thead><tr><th>Recurso</th><th>Detalle</th></tr></thead>
+        <tbody>
+          <tr><td class="label">Web LEGALITUM</td><td>www.legalitum.es</td></tr>
+          <tr><td class="label">Contacto LEGALITUM</td><td>info@legalitum.es · socios@legalitum.com</td></tr>
+          <tr><td class="label">Marca consumer de referencia</td><td>finiquitatudeuda.es</td></tr>
+          <tr><td class="label">Script original de LEGALITUM</td><td>LEGALITUM-Script-1a-Llamada-v6.pdf (documento fuente de este informe)</td></tr>
+          <tr><td class="label">CRM de demo</td><td>Spaces Intelligence (GHL) — pendiente de fijar qué cliente(s) de referencia se usan en cada demo</td></tr>
+          <tr><td class="label">Grabaciones de llamadas de cierre</td><td>Pendiente de recopilar (ver sección "Prueba social y autoridad")</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <footer>
+      <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="5" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Closer Search — Informe interno de referencia sobre LEGALITUM y los packs de leads jurídicos.
+    </footer>
+  </main>
+</div>
+</body>
+</html>
