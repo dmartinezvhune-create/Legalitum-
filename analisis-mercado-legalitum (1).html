@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Análisis de Mercado × LEGALITUM × Closer Search</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#060606; --void-soft:#0F0F0F; --void-card:#131313; --line:#242220;
+    --gold:#C9A84C; --gold-soft:#C9A96E; --gold-dim:#8E763A;
+    --ink:#EDE7D8; --ink-dim:#B4AC98; --ink-faint:#807A6C;
+    --radius:6px; --maxw:880px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--void); color:var(--ink); font-family:'DM Sans',sans-serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',serif; color:var(--ink); margin:0 0 .35em 0; line-height:1.15; font-weight:600;}
+
+  .hero{
+    padding:60px 44px 44px; max-width:var(--maxw); margin:0 auto;
+    background:radial-gradient(ellipse at 88% -10%, rgba(201,168,76,.10), transparent 55%);
+    border-bottom:1px solid var(--line);
+  }
+  .hero .eyebrow{font-size:.72rem; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:600; margin-bottom:16px; font-family:'Cinzel',serif;}
+  .hero h1{font-size:2.4rem; color:#fff;}
+  .hero .lede{max-width:640px; font-size:1.02rem; color:var(--ink-dim); margin-top:14px;}
+  .hero .promise{
+    margin-top:22px; padding:18px 22px; background:var(--void-card);
+    border-left:2px solid var(--gold); border-radius:0 6px 6px 0;
+    font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:600; font-style:italic; color:var(--gold-soft);
+  }
+
+  section{padding:44px 44px; max-width:var(--maxw); margin:0 auto; border-bottom:1px solid var(--line);}
+  section:last-of-type{border-bottom:none;}
+  .section-tag{font-size:.7rem; letter-spacing:.16em; text-transform:uppercase; color:var(--gold-dim); font-weight:600; margin-bottom:8px; font-family:'Cinzel',serif;}
+  section h2{font-size:1.6rem; margin-bottom:.3em; color:#fff;}
+  section h3{font-size:1.1rem; margin-top:24px; color:var(--gold-soft); font-weight:600;}
+  section p{color:var(--ink-dim); max-width:70ch;}
+
+  table{width:100%; border-collapse:collapse; margin-top:16px; font-size:.89rem; background:var(--void-card); border-radius:var(--radius); overflow:hidden;}
+  thead th{background:#000; color:var(--gold); text-align:left; padding:10px 14px; font-size:.7rem; text-transform:uppercase; letter-spacing:.08em; font-weight:600; font-family:'Cinzel',serif; border-bottom:1px solid var(--gold-dim);}
+  tbody td{padding:10px 14px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-dim);}
+  tbody tr:last-child td{border-bottom:none;}
+  tbody tr:nth-child(even){background:rgba(255,255,255,.015);}
+  td.label{font-weight:600; color:var(--ink); white-space:nowrap;}
+
+  .callout{background:rgba(201,168,76,.07); border:1px solid var(--gold-dim); border-radius:var(--radius); padding:14px 18px; margin-top:16px; font-size:.89rem; color:var(--ink-dim);}
+  .callout strong{color:var(--gold);}
+  .callout.warn{background:rgba(150,40,30,.08); border-color:#4A2A24;}
+  .callout.warn strong{color:#D08370;}
+
+  .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:16px;}
+  .stat{background:var(--void-card); border:1px solid var(--line); border-radius:var(--radius); padding:18px;}
+  .stat .num{font-family:'Cormorant Garamond',serif; font-weight:700; font-size:2rem; color:var(--gold);}
+  .stat .lbl{font-size:.82rem; color:var(--ink-dim); margin-top:4px;}
+
+  .seal-divider{display:flex; align-items:center; gap:14px; margin:0 44px; max-width:var(--maxw); margin-left:auto; margin-right:auto;}
+  .seal-divider .line{flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent);}
+  .seal-divider .line.right{background:linear-gradient(90deg,transparent,var(--line));}
+  .seal-divider svg{width:20px; height:20px;}
+
+  footer{padding:30px 44px 56px; max-width:var(--maxw); margin:0 auto; color:var(--ink-faint); font-size:.8rem;}
+
+  @media (max-width:700px){
+    .hero, section, footer{padding-left:22px; padding-right:22px;}
+    .seal-divider{margin-left:22px; margin-right:22px;}
+    .grid-3{grid-template-columns:1fr;}
+    .hero h1{font-size:1.9rem;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="brandmark" style="display:flex; align-items:center; gap:12px; margin-bottom:18px;">
+      <svg viewBox="0 0 100 100" fill="none" width="38" height="38">
+        <polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#C9A84C" stroke-width="3" fill="#060606"/>
+        <polygon points="50,16 79,32 79,68 50,84 21,68 21,32" stroke="#8E763A" stroke-width="1.2" fill="none"/>
+        <path d="M33 50 L45 62 L69 36" stroke="#C9A84C" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <span style="font-family:'Cinzel',serif; font-weight:600; font-size:1rem; color:#fff; letter-spacing:.06em;">CLOSER<span style="color:#C9A84C;"> SEARCH</span></span>
+    </div>
+    <div class="eyebrow">Análisis · Closer Search</div>
+    <h1>Análisis de Mercado y Probabilidad de Cierre</h1>
+    <p class="lede">LEGALITUM × Closer Search: el dolor real de los despachos de abogados en España, el tamaño del mercado, la competencia identificada y las tasas de cierre razonables a manejar internamente.</p>
+    <div class="promise">"El dolor no es 'faltan casos', es no tener un sistema de captación predecible que no robe tiempo facturable."</div>
+  </div>
+
+  <section id="dolor">
+    <div class="section-tag">01 · Dolor</div>
+    <h2>El dolor real de los despachos, con datos</h2>
+    <p>Fuente: Wolters Kluwer Legal Software, encuesta a 633 profesionales legales de 6 países europeos incluida España (jul-sept 2025), y ESADE Alumni / Premios Aptíssimi.</p>
+    <div class="grid-3">
+      <div class="stat"><div class="num">92%</div><div class="lbl">de los despachos españoles señala la captación/fidelización de clientes como preocupación clave</div></div>
+      <div class="stat"><div class="num">56%</div><div class="lbl">cita el aumento de la competencia como principal desafío de captación</div></div>
+      <div class="stat"><div class="num">41,9%</div><div class="lbl">de los abogados factura menos de la mitad de su tiempo</div></div>
+    </div>
+    <p style="margin-top:16px;">Adicionalmente, un 62% de los abogados de bufetes ha notado mayor presión de precios por parte de los clientes en los últimos años.</p>
+    <div class="callout"><strong>Lectura comercial:</strong> el dolor no es "faltan casos" en abstracto, es la ausencia de un sistema de captación predecible que no consuma tiempo facturable. El pack debe venderse como solución a ese sistema, no como un lote de contactos sueltos.</div>
+  </section>
+
+  <div class="seal-divider"><span class="line"></span>
+    <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span class="line right"></span></div>
+
+  <section id="mercado">
+    <div class="section-tag">02 · Tamaño de mercado</div>
+    <h2>Tamaño de mercado (TAM)</h2>
+    <table>
+      <thead><tr><th>Dato</th><th>Fuente</th></tr></thead>
+      <tbody>
+        <tr><td class="label">149.695 abogados ejercientes en España (237.239 colegiados en total, 83 Colegios)</td><td>Abogacía Española</td></tr>
+        <tr><td class="label">73% trabaja en despachos pequeños (38%) o unipersonales (35%)</td><td>ICAM / GAD3</td></tr>
+        <tr><td class="label">Media de 1,87 abogados por despacho</td><td>Estudio de colegiación, Iustel</td></tr>
+        <tr><td class="label">3,23 abogados por cada 1.000 habitantes en España</td><td>Actualidad Jurídica Aranzadi</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Lectura comercial:</strong> el 73% de despachos pequeños/unipersonales es exactamente el perfil del avatar del comprador: despachos con capacidad limitada de inversión en marketing propio, pero con necesidad real de un flujo constante de casos.</div>
+  </section>
+
+  <div class="seal-divider"><span class="line"></span>
+    <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span class="line right"></span></div>
+
+  <section id="competencia">
+    <div class="section-tag">03 · Competencia</div>
+    <h2>Cuántas empresas se dedican a este servicio</h2>
+    <p>Al menos 8-10 competidores especializados directos operan hoy en el nicho de leads jurídicos LSO/revolving/bancario en España, más un número mucho mayor de agencias generalistas de marketing legal.</p>
+    <table>
+      <thead><tr><th>Competidor</th><th>Nota</th></tr></thead>
+      <tbody>
+        <tr><td class="label">ComprarLeads.com</td><td>+80 abogados usando sus leads, máximo 2 despachos por provincia. Mismo gancho de exclusividad territorial que LEGALITUM</td></tr>
+        <tr><td class="label">Jurídica Digital</td><td>Especializado en revolving + LSO, +3 años de trayectoria</td></tr>
+        <tr><td class="label">LeadsLaw</td><td>Equipo propio de juristas y marketing especializado en despachos</td></tr>
+        <tr><td class="label">CaptaLeads</td><td>Leads para Ley de Segunda Oportunidad</td></tr>
+        <tr><td class="label">Leads Marketing (leadsparamarketing.com)</td><td>LSO, revolving, bancario, familia, laboral, mercantil</td></tr>
+        <tr><td class="label">LeadsClientes</td><td>LSO y derecho bancario/mercantil</td></tr>
+        <tr><td class="label">CSEOs Agency</td><td>Especializado en LSO</td></tr>
+        <tr><td class="label">Agencia Leads (agencialeads.net)</td><td>Leads jurídicos multi-especialidad</td></tr>
+        <tr><td class="label">Generalistas (Scorpion, LeadGenius, Bastida&amp;Farina, etc.)</td><td>Agencias de marketing legal más amplias, sin foco exclusivo en LSO/revolving</td></tr>
+      </tbody>
+    </table>
+    <div class="callout warn"><strong>Lectura honesta:</strong> el mercado no está vacío, hay competencia real y ya establecida, incluyendo al menos un competidor con el mismo argumento de exclusividad territorial que LEGALITUM. La diferenciación real del pack de Closer Search tiene que apoyarse en la demo en vivo del CRM (ningún competidor identificado la anuncia) y en el modelo de precio cerrado por pack, no en "somos los únicos del mercado".</div>
+  </section>
+
+  <div class="seal-divider"><span class="line"></span>
+    <svg viewBox="0 0 100 100" fill="none"><polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#8E763A" stroke-width="4" fill="none"/><path d="M33 50 L45 62 L69 36" stroke="#8E763A" stroke-width="6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <span class="line right"></span></div>
+
+  <section id="cierre-a">
+    <div class="section-tag">04a · Tasa A</div>
+    <h2>Probabilidad de cierre · A) Lead → cliente firmado (LEGALITUM)</h2>
+    <p>Contrastado con benchmarks independientes del sector legal (no del propio material comercial de LEGALITUM).</p>
+    <table>
+      <thead><tr><th>Referencia</th><th>Rango</th></tr></thead>
+      <tbody>
+        <tr><td class="label">Conversión media del sector legal</td><td>~14%</td></tr>
+        <tr><td class="label">Rango "saludable" para un despacho</td><td>25-35%</td></tr>
+        <tr><td class="label">Despachos de élite (intake rápido, CRM)</td><td>40-55%</td></tr>
+        <tr><td class="label">Leads exclusivos (el tipo que vende LEGALITUM)</td><td>15-30%</td></tr>
+        <tr><td class="label">Leads compartidos (no exclusivos)</td><td>5-12%</td></tr>
+      </tbody>
+    </table>
+    <table>
+      <thead><tr><th>Pack</th><th>Cifra declarada por LEGALITUM</th><th>Lectura frente al mercado</th></tr></thead>
+      <tbody>
+        <tr><td class="label">Pack 1 · Cualificados</td><td>20-30%</td><td>Coherente con leads exclusivos del sector (15-30%)</td></tr>
+        <tr><td class="label">Pack 2 · Ultra cualificados</td><td>50-70%</td><td>Optimista. Supera el techo de despachos de élite (40-55%). Manejar internamente 30-50%</td></tr>
+        <tr><td class="label">Pack 3 · Pre vendidos</td><td>100%</td><td>No es una tasa de conversión real: la hoja ya llega firmada, no es comparable</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="cierre-b">
+    <div class="section-tag">04b · Tasa B</div>
+    <h2>Probabilidad de cierre · B) Contacto → pack vendido (Closer Search)</h2>
+    <p>Sin histórico real todavía (el proyecto no ha arrancado): estimación razonada con benchmarks de venta B2B de alto ticket.</p>
+    <table>
+      <thead><tr><th>Fase</th><th>Benchmark de mercado B2B</th><th>Estimación aplicable</th></tr></thead>
+      <tbody>
+        <tr><td class="label">Setter: contacto → cita agendada</td><td>Cold calling B2B: 2-5% media, 5-8% los mejores</td><td>5-10% (lista dirigida por zona/especialidad, no 100% fría)</td></tr>
+        <tr><td class="label">Closer: cita/demo → cierre del pack</td><td>Venta consultiva high-ticket: &lt;30% indica fricción sin resolver; equipos entrenados 25-40%</td><td>25-40%, sesgado a la parte alta por la demo en vivo con Spaces Intelligence</td></tr>
+        <tr><td class="label">Combinado: contacto → pack vendido</td><td>·</td><td>Aprox. 1,5% a 4% de los despachos contactados en frío</td></tr>
+      </tbody>
+    </table>
+    <div class="callout"><strong>Importante:</strong> esta tasa B es una proyección razonada, no un dato medido. No hay histórico propio todavía. La palanca más fuerte para mejorarla no es el guion, es la calidad de la lista de despachos contactados: cuanto más se ajusten al avatar y más dolor activo tengan, más sube la fase de cierre en cita.</div>
+    <div class="callout"><strong>Palanca de la metodología Anti-Ventas:</strong> un proceso de venta consultivo que cualifica sobre el dolor real detectado (en vez de presionar con un guion agresivo genérico) tiende a empujar la fase de cierre hacia la parte alta del rango (25-40%) frente al estándar del sector.</div>
+  </section>
+
+  <footer>Closer Search · Análisis de mercado independiente, elaborado como documento de apoyo al Informe Ejecutivo LEGALITUM × Closer Search.</footer>
+
+</body>
+</html>
