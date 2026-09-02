@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guía de Ventas Interactiva · LEGALITUM · Closer Search</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#060606; --void-soft:#0F0F0F; --void-card:#131313; --void-card2:#191919;
+    --line:#242220;
+    --gold:#C9A84C; --gold-soft:#C9A96E; --gold-dim:#8E763A; --gold-glow:rgba(201,168,76,.10);
+    --teal:#4ABFA3; --teal-glow:rgba(74,191,163,.10); --teal-dim:rgba(74,191,163,.3);
+    --red:#D97B6B; --red-glow:rgba(217,91,91,.09); --red-dim:rgba(217,91,91,.3);
+    --ink:#EDE7D8; --ink-dim:#B4AC98; --ink-faint:#807A6C;
+    --radius:8px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--void); color:var(--ink); font-family:'DM Sans',sans-serif; font-size:15.5px; line-height:1.6; -webkit-font-smoothing:antialiased; padding-bottom:64px;}
+  h1,h2,h3,h4{font-family:'Cormorant Garamond',serif; color:var(--ink); margin:0 0 .3em; font-weight:600; line-height:1.2;}
+  a{color:var(--gold);}
+  button{font-family:'DM Sans',sans-serif;}
+  label{font-size:.78rem; color:var(--ink-faint); display:block; margin-bottom:4px;}
+  input[type=text],input[type=tel],input[type=email],input[type=date],input[type=time],select,textarea{
+    width:100%; background:var(--void-card); border:1px solid var(--line); color:var(--ink);
+    border-radius:6px; padding:9px 11px; font-size:.86rem; font-family:'DM Sans',sans-serif;
+  }
+  input:focus,select:focus,textarea:focus{outline:1px solid var(--gold-dim);}
+
+  header.top{position:sticky; top:0; z-index:50; background:var(--void-soft); border-bottom:1px solid var(--gold-dim);}
+  .brandbar{display:flex; align-items:center; justify-content:space-between; padding:12px 22px; flex-wrap:wrap; gap:10px;}
+  .brandmark{display:flex; align-items:center; gap:10px;}
+  .brandmark svg{width:30px; height:30px;}
+  .brand-name{font-family:'Cinzel',serif; font-weight:600; font-size:.95rem; color:#fff; letter-spacing:.05em;}
+  .brand-name .search{color:var(--gold);}
+  .brand-title{font-size:.78rem; color:var(--ink-dim); margin-top:1px;}
+  .leadname-box{display:flex; align-items:center; gap:8px; font-size:.78rem; color:var(--ink-faint);}
+  .leadname-box input{width:170px;}
+
+  .tabs{display:flex; gap:4px; padding:0 22px; overflow-x:auto; background:#000; border-bottom:1px solid var(--line);}
+  .tabbtn{background:none; border:none; color:var(--ink-faint); padding:12px 14px; font-size:.82rem; cursor:pointer; white-space:nowrap; border-bottom:2px solid transparent;}
+  .tabbtn.active{color:var(--gold); border-bottom-color:var(--gold);}
+  .tabbtn:hover{color:var(--gold-soft);}
+
+  main{max-width:920px; margin:0 auto; padding:32px 22px 40px;}
+  .tabpanel{display:none;}
+  .tabpanel.active{display:block;}
+  .page-title{font-size:1.7rem; color:#fff;}
+  .lede{color:var(--ink-dim); max-width:68ch; margin-top:6px;}
+
+  table{width:100%; border-collapse:collapse; margin-top:16px; font-size:.88rem; background:var(--void-card); border-radius:var(--radius); overflow:hidden;}
+  thead th{background:#000; color:var(--gold); text-align:left; padding:10px 13px; font-size:.68rem; text-transform:uppercase; letter-spacing:.07em; font-weight:600; font-family:'Cinzel',serif; border-bottom:1px solid var(--gold-dim);}
+  tbody td{padding:10px 13px; border-bottom:1px solid var(--line); vertical-align:top; color:var(--ink-dim);}
+  tbody tr:last-child td{border-bottom:none;}
+  td.label{font-weight:600; color:var(--ink); white-space:nowrap;}
+
+  .callout{background:var(--gold-glow); border:1px solid var(--gold-dim); border-radius:var(--radius); padding:14px 18px; margin-top:16px; font-size:.87rem; color:var(--ink-dim);}
+  .callout strong{color:var(--gold);}
+  .callout.teal{background:var(--teal-glow); border-color:var(--teal-dim);}
+  .callout.teal strong{color:var(--teal);}
+  .callout.red{background:var(--red-glow); border-color:var(--red-dim);}
+  .callout.red strong{color:var(--red);}
+
+  .ficha-grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:18px;}
+  .ficha-grid .full{grid-column:1/-1;}
+  .ficha-status{font-size:.8rem; color:var(--teal); margin-top:14px;}
+
+  .grid-2{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:16px;}
+  .card{background:var(--void-card); border:1px solid var(--line); border-radius:var(--radius); padding:16px 18px;}
+  .card h4{font-size:1rem; margin-bottom:6px;}
+  .card p{margin:0; font-size:.87rem; color:var(--ink-dim);}
+
+  .flow-card{background:var(--void-card2); border:1px solid var(--gold-dim); border-radius:10px; padding:22px 24px; margin-top:18px;}
+  .flow-tag{font-size:.68rem; text-transform:uppercase; letter-spacing:.1em; color:var(--gold-dim); font-family:'Cinzel',serif; margin-bottom:8px;}
+  .flow-script{font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.14rem; color:var(--ink); background:var(--gold-glow); border-left:3px solid var(--gold); padding:14px 18px; border-radius:0 6px 6px 0; margin:10px 0 16px;}
+  .flow-note{font-size:.85rem; color:var(--ink-dim); margin-bottom:14px;}
+  .flow-options{display:flex; flex-direction:column; gap:8px;}
+  .flow-opt{text-align:left; background:var(--void-card); border:1px solid var(--line); color:var(--ink); padding:11px 14px; border-radius:7px; font-size:.87rem; cursor:pointer; transition:.15s;}
+  .flow-opt:hover{border-color:var(--gold); color:var(--gold-soft);}
+  .flow-opt.obj{border-left:3px solid var(--red-dim);}
+  .flow-opt.win{border-left:3px solid var(--teal-dim);}
+  .flow-opt.warn{border-left:3px solid var(--gold-dim);}
+  .flow-navrow{display:flex; gap:10px; margin-top:16px;}
+  .flow-back{background:none; border:1px solid var(--line); color:var(--ink-faint); padding:8px 14px; border-radius:6px; font-size:.78rem; cursor:pointer;}
+  .flow-back:hover{color:var(--gold-soft); border-color:var(--gold-dim);}
+  .flow-restart{background:none; border:1px solid var(--line); color:var(--ink-faint); padding:8px 14px; border-radius:6px; font-size:.78rem; cursor:pointer;}
+  .flow-restart:hover{color:var(--gold-soft); border-color:var(--gold-dim);}
+  .overlay-label{font-size:.72rem; text-transform:uppercase; letter-spacing:.08em; color:var(--red); margin-bottom:6px; font-family:'Cinzel',serif;}
+  .flow-branch-label{font-size:.78rem; text-transform:uppercase; letter-spacing:.06em; color:var(--gold-dim); margin-top:6px; font-family:'Cinzel',serif;}
+  .flow-branch-row{display:grid; grid-template-columns:repeat(auto-fit, minmax(180px,1fr)); gap:12px; margin-top:10px;}
+  .flow-branch{background:var(--void-card); border:2px solid var(--gold-dim); color:var(--ink); padding:16px 16px; border-radius:9px; font-size:.92rem; cursor:pointer; text-align:center; transition:.15s;}
+  .flow-branch:hover{border-color:var(--gold); color:var(--gold-soft); background:var(--gold-glow);}
+  .flow-branch.win{border-color:var(--teal-dim);}
+  .flow-branch.win:hover{border-color:var(--teal); color:var(--teal);}
+  .termometro-box{background:#000; border:1px solid var(--gold-dim); border-radius:8px; padding:14px 18px; margin-top:16px;}
+  .termometro-box .trow{display:flex; gap:16px; flex-wrap:wrap; margin-top:10px;}
+  .termometro-box input[type=number]{width:60px;}
+  .page-nav{display:flex; align-items:center; justify-content:space-between; gap:12px; max-width:920px; margin:26px auto 0; padding-top:20px; border-top:1px solid var(--line); flex-wrap:wrap;}
+  .page-nav-label{font-size:.78rem; color:var(--ink-faint); text-align:center; flex:1;}
+  .page-nav button:disabled{opacity:.35; cursor:default;}
+  @media (max-width:700px){
+    .flow-branch-row{grid-template-columns:1fr;}
+  }
+  .flow-end{border-color:var(--teal-dim); background:var(--teal-glow);}
+  .flow-end .flow-tag{color:var(--teal);}
+
+  .schedule-box{background:#000; border:1px solid var(--gold-dim); border-radius:8px; padding:16px 18px; margin-top:14px;}
+  .schedule-row{display:flex; gap:12px; flex-wrap:wrap;}
+  .schedule-row > div{flex:1; min-width:140px;}
+  .send-msg{background:var(--void-card); border:1px solid var(--line); border-radius:7px; padding:12px 14px; margin-top:12px; font-size:.83rem; color:var(--ink-dim); white-space:pre-wrap;}
+  .send-row{display:flex; gap:10px; margin-top:10px; flex-wrap:wrap;}
+  .btn{background:var(--gold); color:#060606; border:none; padding:9px 16px; border-radius:6px; font-size:.82rem; font-weight:600; cursor:pointer;}
+  .btn:hover{background:var(--gold-soft);}
+  .btn.ghost{background:none; border:1px solid var(--gold-dim); color:var(--gold-soft);}
+  .btn.wa{background:#25D366; color:#04140b;}
+  .btn.mail{background:var(--void-card); border:1px solid var(--gold-dim); color:var(--gold-soft);}
+
+  .checklist{list-style:none; padding:0; margin-top:16px;}
+  .checklist li{display:flex; gap:10px; align-items:flex-start; padding:7px 0; font-size:.88rem; color:var(--ink-dim); border-bottom:1px dashed var(--line);}
+  .checklist li:last-child{border-bottom:none;}
+  .checklist .box{flex:0 0 15px; width:15px; height:15px; border:1px solid var(--gold-dim); border-radius:2px; margin-top:2px;}
+
+  .export-box{background:#000; border:1px solid var(--gold-dim); border-radius:10px; padding:20px 22px; margin-top:18px; font-family:monospace; font-size:.82rem; white-space:pre-wrap; color:var(--ink-dim); max-height:420px; overflow:auto;}
+
+  .quickbar{position:fixed; left:0; right:0; bottom:0; z-index:60; background:#000; border-top:1px solid var(--gold-dim); padding:9px 22px; display:flex; gap:10px; flex-wrap:wrap; font-size:.78rem;}
+  .qgroup{display:inline-flex; align-items:center; gap:8px; background:var(--void-card); border:1px solid var(--line); border-radius:20px; padding:6px 12px; color:var(--ink-dim); text-decoration:none;}
+  .qgroup:hover{border-color:var(--gold-dim); color:var(--gold-soft);}
+
+  @media (max-width:700px){
+    .ficha-grid, .grid-2{grid-template-columns:1fr;}
+    main{padding:22px 14px 40px;}
+    .schedule-row > div{min-width:100%;}
+  }
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body>
+
+<header class="top">
+  <div class="brandbar">
+    <div class="brandmark">
+      <svg viewBox="0 0 100 100" fill="none">
+        <polygon points="50,4 90,26 90,74 50,96 10,74 10,26" stroke="#C9A84C" stroke-width="3" fill="#060606"/>
+        <polygon points="50,16 79,32 79,68 50,84 21,68 21,32" stroke="#8E763A" stroke-width="1.2" fill="none"/>
+        <path d="M33 50 L45 62 L69 36" stroke="#C9A84C" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div>
+        <div class="brand-name">CLOSER<span class="search"> SEARCH</span></div>
+        <div class="brand-title">Guía de Ventas Interactiva · LEGALITUM</div>
+      </div>
+    </div>
+    <div class="leadname-box">Despacho: <input type="text" id="despachoInput" placeholder="Nombre del despacho"></div>
+  </div>
+  <div class="tabs" id="tabs">
+    <button class="tabbtn active" data-tab="ficha">Ficha del despacho</button>
+    <button class="tabbtn" data-tab="prospeccion">Prospección</button>
+    <button class="tabbtn" data-tab="oferta">Packs y avatar</button>
+    <button class="tabbtn" data-tab="marcos">Marcos mentales</button>
+    <button class="tabbtn" data-tab="llamada1">Llamada 1 · Filtro y pitch</button>
+    <button class="tabbtn" data-tab="agendar-demo">Agendar demo</button>
+    <button class="tabbtn" data-tab="llamada2">Llamada 2 · Demo y cierre</button>
+    <button class="tabbtn" data-tab="cierre">Cierre y pagos</button>
+    <button class="tabbtn" data-tab="exportar">Exportar ficha</button>
+  </div>
+</header>
+
+<main>
+
+  <section class="tabpanel active" id="tab-ficha">
+    <h2 class="page-title">Ficha del despacho</h2>
+    <p class="lede">Rellena esto al principio de la Llamada 1. Estos datos sustituyen etiquetas como [Despacho], [Provincia] o [Pack] en los guiones, y alimentan los mensajes de WhatsApp/email y la ficha exportable.</p>
+    <div class="ficha-grid">
+      <div><label>Setter-closer (quién hace la llamada)</label>
+        <select id="closer-select" onchange="handleCloserSelect(this)">
+          <option value="">Elegir...</option>
+          <option>María</option><option>Sandra</option><option>Montse</option><option>Patricia</option>
+          <option value="__otro__">Otro (escribir)</option>
+        </select>
+        <input type="text" id="closer-otro" data-f="closer" oninput="setF(this)" placeholder="Nombre del comercial" style="display:none; margin-top:6px;">
+      </div>
+      <div><label>Nombre del contacto</label><input type="text" data-f="contacto" oninput="setF(this)"></div>
+      <div><label>Nombre del despacho</label><input type="text" data-f="despacho" oninput="setF(this)"></div>
+      <div><label>Provincia / zona</label>
+        <select data-f="provincia" oninput="setF(this)">
+          <option value="">Elegir...</option>
+          <option>Álava</option><option>Albacete</option><option>Alicante</option><option>Almería</option>
+          <option>Asturias</option><option>Ávila</option><option>Badajoz</option><option>Barcelona</option>
+          <option>Burgos</option><option>Cáceres</option><option>Cádiz</option><option>Cantabria</option>
+          <option>Castellón</option><option>Ciudad Real</option><option>Córdoba</option><option>Cuenca</option>
+          <option>Gerona</option><option>Granada</option><option>Guadalajara</option><option>Guipúzcoa</option>
+          <option>Huelva</option><option>Huesca</option><option>Islas Baleares</option><option>Jaén</option>
+          <option>La Coruña</option><option>La Rioja</option><option>Las Palmas</option><option>León</option>
+          <option>Lérida</option><option>Lugo</option><option>Madrid</option><option>Málaga</option>
+          <option>Murcia</option><option>Navarra</option><option>Orense</option><option>Palencia</option>
+          <option>Pontevedra</option><option>Salamanca</option><option>Segovia</option><option>Sevilla</option>
+          <option>Soria</option><option>Tarragona</option><option>Santa Cruz de Tenerife</option><option>Teruel</option>
+          <option>Toledo</option><option>Valencia</option><option>Valladolid</option><option>Vizcaya</option>
+          <option>Zamora</option><option>Zaragoza</option><option>Ceuta</option><option>Melilla</option>
+        </select>
+      </div>
+      <div><label>Ciudad</label>
+        <select id="ciudad-select" onchange="handleCiudadSelect(this)">
+          <option value="">Elegir...</option>
+          <option>Madrid</option><option>Barcelona</option><option>Valencia</option><option>Sevilla</option>
+          <option>Zaragoza</option><option>Málaga</option><option>Murcia</option><option>Palma de Mallorca</option>
+          <option>Las Palmas de Gran Canaria</option><option>Bilbao</option><option>Alicante</option><option>Córdoba</option>
+          <option>Valladolid</option><option>Vigo</option><option>Gijón</option><option>L'Hospitalet de Llobregat</option>
+          <option>A Coruña</option><option>Vitoria-Gasteiz</option><option>Granada</option><option>Elche</option>
+          <option>Oviedo</option><option>Badalona</option><option>Cartagena</option><option>Terrassa</option>
+          <option>Jerez de la Frontera</option><option>Sabadell</option><option>Móstoles</option><option>Alcalá de Henares</option>
+          <option>Pamplona</option><option>Fuenlabrada</option><option>Almería</option><option>Leganés</option>
+          <option>Santander</option><option>San Sebastián</option><option>Castellón de la Plana</option><option>Burgos</option>
+          <option>Albacete</option><option>Getafe</option><option>Alcorcón</option><option>Salamanca</option>
+          <option>Logroño</option><option>Huelva</option><option>Marbella</option><option>Lleida</option>
+          <option>Tarragona</option><option>León</option><option>Badajoz</option><option>Cádiz</option>
+          <option>Toledo</option><option>Pontevedra</option><option>Girona</option><option>Ourense</option>
+          <option value="__otro__">Otra (escribir)</option>
+        </select>
+        <input type="text" id="ciudad-otro" data-f="ciudad" oninput="setF(this)" placeholder="Nombre de la ciudad" style="display:none; margin-top:6px;">
+      </div>
+      <div><label>Especialidad</label>
+        <select data-f="especialidad" oninput="setF(this)">
+          <option value="">Elegir...</option>
+          <option>LSO</option><option>Familia</option><option>Laboral</option>
+          <option>Mercantil</option><option>Bancario</option><option>Revolving</option>
+          <option>Financiación / usura vehículos</option>
+        </select>
+      </div>
+      <div><label>Tamaño del equipo</label>
+        <select data-f="equipo" oninput="setF(this)">
+          <option value="">Elegir...</option>
+          <option>1 persona (unipersonal)</option>
+          <option>2 personas</option>
+          <option>3-4 personas</option>
+          <option>5-9 personas</option>
+          <option>10 o más personas</option>
+        </select>
+      </div>
+      <div><label>Teléfono fijo</label><input type="tel" data-f="telefono_fijo" oninput="setF(this)"></div>
+      <div><label>Teléfono móvil (para WhatsApp)</label><input type="tel" data-f="telefono_movil" oninput="setF(this)" placeholder="con prefijo, ej. 34..."></div>
+      <div><label>Email</label><input type="email" data-f="email" oninput="setF(this)"></div>
+      <div><label>Pack recomendado</label>
+        <select data-f="pack" oninput="setF(this)">
+          <option value="">Elegir...</option>
+          <option value="Pack 1 (100 leads cualificados, 1.400€)">Pack 1 · 1.400€</option>
+          <option value="Pack 2 (50 ultra cualificados + agendados, 2.500€)">Pack 2 · 2.500€</option>
+        </select>
+      </div>
+      <div class="full"><label>Enlace del CRM de demo (Spaces Intelligence, cliente de referencia)</label><input type="text" data-f="crmlink" oninput="setF(this)" placeholder="https://..."></div>
+      <div class="full"><label>Resultado Llamada 2 / notas de cierre</label><textarea rows="3" data-f="notas" oninput="setF(this)"></textarea></div>
+      <div class="full" id="ficha-pair" style="display:none;"></div>
+    </div>
+    <div class="ficha-status" id="ficha-status"></div>
+    <div class="send-row" style="margin-top:18px;">
+      <button class="btn" onclick="goTab('llamada1')">📞 Ir a la Llamada 1</button>
+      <button class="btn ghost" onclick="goTab('agendar-demo')">📅 Ir a Agendar demo</button>
+      <button class="btn ghost" onclick="goTab('llamada2')">📞 Ir a la Llamada 2 · Demo y cierre</button>
+      <button class="btn ghost" onclick="goTab('oferta')">📋 Ver Packs y avatar</button>
+      <button class="btn ghost" onclick="goTab('cierre')">💳 Ver Cierre y pagos</button>
+    </div>
+    <div class="callout" id="meet-reminder" style="margin-top:18px;"><strong>Antes de tu primera llamada:</strong> configura el enlace fijo de Google Meet (una sola vez, se usa en todas las llamadas). <button class="btn ghost" style="margin-top:8px;" onclick="goTab('prospeccion')">🔗 Configurar enlace de Meet</button></div>
+  </section>
+
+  <section class="tabpanel" id="tab-prospeccion">
+    <h2 class="page-title">Cómo llega el despacho y qué hacer antes de la Llamada 1</h2>
+    <p class="lede">Llamada en frío a despachos de abogados, en nombre del equipo de LEGALITUM. El objetivo de la Llamada 1 nunca es vender el pack: es conseguir que el despacho acepte ver la demo.</p>
+    <h3>Checklist antes de marcar</h3>
+    <ul class="checklist">
+      <li><span class="box"></span> Nombre del contacto y del despacho</li>
+      <li><span class="box"></span> Provincia / zona y especialidad a activar</li>
+      <li><span class="box"></span> Encaje aproximado con criterios de admisión (colegiado activo, equipo mínimo de 2 personas, atención en menos de 15 min)</li>
+      <li><span class="box"></span> Enlace del CRM de demo (Spaces Intelligence) ya guardado en la Ficha del despacho</li>
+      <li><span class="box"></span> Calendario libre para ofrecer franjas de demo en la misma llamada</li>
+    </ul>
+    <div class="callout"><strong>Regla de la Llamada 1:</strong> nunca se habla de precios de packs en esta llamada. El único objetivo es la cita para la demo. Cierre excepcional permitido si el despacho insiste en comprar ya, sin esperar a la demo.</div>
+    <h3>Configuración general (una sola vez, se usa en todas las llamadas)</h3>
+    <div class="ficha-grid">
+      <div class="full">
+        <label>Enlace fijo de la sala de Google Meet (siempre el mismo)</label>
+        <input type="text" id="meetlink-input" placeholder="https://meet.google.com/xxx-xxxx-xxx" oninput="setMeetLink(this.value)">
+      </div>
+    </div>
+    <div class="ficha-status" id="meetlink-status"></div>
+  </section>
+
+  <section class="tabpanel" id="tab-oferta">
+    <h2 class="page-title">Packs y avatar del despacho</h2>
+    <h3>Avatar</h3>
+    <p>Despacho pequeño o unipersonal (73% del mercado español), sin sistema de captación predecible.</p>
+    <div class="callout"><strong>El dolor real:</strong> 92% de los despachos españoles señala la captación/fidelización de clientes como preocupación clave. El dolor no es "faltan casos" en abstracto, es no tener un sistema de captación predecible que no robe tiempo facturable.</div>
+    <h3>Los packs que se ofrecen ahora</h3>
+    <table>
+      <thead><tr><th>Pack</th><th>Contenido</th><th>Precio</th><th>Retorno estimado</th></tr></thead>
+      <tbody>
+        <tr><td class="label">Pack 1</td><td>100 leads cualificados (14€/lead)</td><td>1.400€</td><td>70.000€ facturación potencial, ×50 la inversión</td></tr>
+        <tr><td class="label">Pack 2</td><td>50 leads ultra cualificados + agendados (50€/lead)</td><td>2.500€</td><td>87.500€ facturación potencial, ×35 la inversión</td></tr>
+      </tbody>
+    </table>
+    <div class="callout teal"><strong>Pack 3 · No se ofrece de momento:</strong> el pack de 50 leads pre vendidos con hoja de encargo firmada (150€/lead, 7.500€, solo bancario/revolving/financiación usura vehículos) NO se comercializa activamente todavía. A lo largo del año se irán lanzando paquetes de este tipo. A los despachos que finalmente decidan trabajar con nosotros se les informará y se les ofrecerá en cuanto hagamos esos lanzamientos. No mencionar el Pack 3 como opción de compra en la Llamada 2 salvo que el propio despacho pregunte específicamente por hojas de encargo firmadas; en ese caso, informar de que es un producto en preparación, no ofrecerlo como venta cerrada hoy.</div>
+  </section>
+
+  <section class="tabpanel" id="tab-marcos">
+    <h2 class="page-title">Marcos mentales del closer</h2>
+    <div class="grid-2">
+      <div class="card"><h4>Somos el equipo de LEGALITUM</h4><p>En la llamada nos presentamos como parte del equipo de LEGALITUM, no como una empresa externa que revende sus leads. Genera más confianza y coherencia con la marca que el despacho reconoce.</p></div>
+      <div class="card"><h4>Vender el sistema, no los leads</h4><p>El despacho no compra "contactos sueltos", compra acceso a una máquina de captación ya construida.</p></div>
+      <div class="card"><h4>La demo sustituye al argumento</h4><p>Ante la duda o la desconfianza, no se discute: se enseña. "No se lo explico, se lo enseño."</p></div>
+      <div class="card"><h4>La Llamada 1 no vende, agenda</h4><p>Forzar el cierre del pack en la primera llamada suele generar más resistencia que agendar una demo concreta.</p></div>
+    </div>
+    <div class="callout teal"><strong>Límites:</strong> nunca prometer un número exacto de clientes o facturación garantizada. El Pack 2 se maneja internamente como 30-50% de conversión, más realista que el 50-70% declarado por LEGALITUM. El Pack 3 no se ofrece hoy, no generar expectativa de fecha concreta de lanzamiento si no está confirmada.</div>
+  </section>
+
+  <section class="tabpanel" id="tab-llamada1">
+    <h2 class="page-title">Llamada 1 · Filtro y pitch</h2>
+    <p class="lede">Objetivo: cualificar rápido (zona, equipo, experiencia), diagnosticar cómo captan clientes hoy y proponer la demo. Termina en tres caminos: hacer la demo ahora, cerrar sin demo, o agendar para otro momento.</p>
+    <div id="flow1-container"></div>
+  </section>
+
+  <section class="tabpanel" id="tab-agendar-demo">
+    <h2 class="page-title">Agendar demo</h2>
+    <p class="lede">Se llega aquí cuando el despacho prefiere fijar la demo para otro momento. Calendario, mensaje de confirmación y recordatorios (24h antes y el mismo día, con vídeo de LEGALITUM).</p>
+    <div id="flowAgendar-container"></div>
+  </section>
+
+  <section class="tabpanel" id="tab-llamada2">
+    <h2 class="page-title">Llamada 2 · Demo en vivo y cierre</h2>
+    <p class="lede">Se usa una vez confirmada la cita desde "Agendar demo". Objetivo: cualificar, hacer la demo en Spaces Intelligence, presentar los packs disponibles (1 y 2) y cerrar.</p>
+    <div id="flow2-container"></div>
+  </section>
+
+  <section class="tabpanel" id="tab-cierre">
+    <h2 class="page-title">Cierre y pagos</h2>
+    <table>
+      <thead><tr><th>Condición</th><th>Detalle</th></tr></thead>
+      <tbody>
+        <tr><td class="label">Pago</td><td>50% adelantado + 50% al completar el volumen del pack</td></tr>
+        <tr><td class="label">Activación</td><td>LEGALITUM declara primeros clientes en 48h tras validar zona/especialidad y firmar exclusividad. Sujeto a confirmación real</td></tr>
+        <tr><td class="label">Entrega</td><td>Leads gestionados en Spaces Intelligence</td></tr>
+        <tr><td class="label">Pack 3 (hoja de encargo)</td><td>No disponible hoy. Se informará a clientes activos cuando se lance</td></tr>
+      </tbody>
+    </table>
+    <div class="callout red"><strong>Pendiente de resolver:</strong> no hay método de pago operativo definido todavía. No comprometer un método concreto con el despacho hasta confirmarlo internamente.</div>
+  </section>
+
+  <section class="tabpanel" id="tab-exportar">
+    <h2 class="page-title">Exportar ficha</h2>
+    <p class="lede">Genera el resumen de la ficha del despacho, listo para copiar y pegar en Spaces Intelligence, o descargar en PDF. Los campos de closer, objeciones y bloque donde se detuvo la llamada quedan guardados para poder construir más adelante un informe de análisis agregado (tasa de cierre por closer, objeciones más frecuentes, dónde se pierden las llamadas, etc.).</p>
+    <button class="btn" onclick="guardarFichaActual()">💾 Guardar ficha</button>
+    <button class="btn" style="background:#D9534F; color:#fff;" onclick="exportPDF()">⬇ Exportar a PDF</button>
+    <div class="export-box" id="exportBox">Pulsa "Exportar a PDF" o revisa la pestaña Ficha del despacho.</div>
+    <h3 style="margin-top:28px;">Fichas guardadas</h3>
+    <p class="lede">Todos los despachos que has guardado hasta ahora. Pulsa "Cargar" para recuperar cualquiera.</p>
+    <div id="fichas-guardadas-list" style="margin-top:10px;"></div>
+  </section>
+  <div class="page-nav">
+    <button class="btn ghost" id="pageNavPrev" onclick="pageNav(-1)">← Página anterior</button>
+    <span class="page-nav-label" id="pageNavLabel"></span>
+    <button class="btn" id="pageNavNext" onclick="pageNav(1)">Página siguiente →</button>
+  </div>
+
+</main>
+
+<div class="quickbar">
+  <a class="qgroup" href="#" onclick="return openWA(fill('Hola [Contacto], le confirmamos la demo de LEGALITUM el ' + (ficha.fecha||'[fecha]') + ' a las ' + (ficha.hora||'[hora]') + '. Un saludo.'));">📱 WhatsApp rápido</a>
+  <a class="qgroup" href="#" onclick="return openMail('Confirmación demo LEGALITUM', fill('Hola [Contacto], le confirmamos la demo de LEGALITUM el ' + (ficha.fecha||'[fecha]') + ' a las ' + (ficha.hora||'[hora]') + '. Un saludo.'));">✉️ Email rápido</a>
+  <a class="qgroup" href="#" onclick="if(ficha.crmlink){window.open(ficha.crmlink,'_blank');}else{alert('Añade primero el enlace del CRM en la Ficha del despacho');} return false;">🖥️ Abrir CRM demo</a>
+  <a class="qgroup" href="#" onclick="goTab('llamada1'); return false;">↺ Llamada 1</a>
+  <a class="qgroup" href="#" onclick="goTab('agendar-demo'); return false;">↺ Agendar demo</a>
+  <a class="qgroup" href="#" onclick="goTab('llamada2'); return false;">↺ Llamada 2</a>
+</div>
+
+<script>
+document.querySelectorAll('.tabbtn').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    document.querySelectorAll('.tabbtn').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.tabpanel').forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    document.getElementById('tab-'+b.dataset.tab).classList.add('active');
+    updatePageNav();
+  });
+});
+function goTab(name){
+  document.querySelectorAll('.tabbtn').forEach(x=>x.classList.toggle('active', x.dataset.tab===name));
+  document.querySelectorAll('.tabpanel').forEach(x=>x.classList.toggle('active', x.id==='tab-'+name));
+  updatePageNav();
+}
+
+// ---------- Navegación página anterior / siguiente entre las 8 pestañas ----------
+const PAGE_ORDER = ['ficha','prospeccion','oferta','marcos','llamada1','agendar-demo','llamada2','cierre','exportar'];
+const PAGE_TITLES = {
+  ficha:'Ficha del despacho', prospeccion:'Prospección', oferta:'Packs y avatar', marcos:'Marcos mentales',
+  llamada1:'Llamada 1 · Filtro y pitch', 'agendar-demo':'Agendar demo', llamada2:'Llamada 2 · Demo y cierre', cierre:'Cierre y pagos', exportar:'Exportar ficha'
+};
+function currentTab(){
+  const active = document.querySelector('.tabbtn.active');
+  return active ? active.dataset.tab : 'ficha';
+}
+const TAB_FLOW = {llamada1:'flow1', 'agendar-demo':'flowAgendar', llamada2:'flow2'};
+function pageNav(dir){
+  if(dir===1){
+    const activeFlow = TAB_FLOW[currentTab()];
+    if(activeFlow){
+      const flows = {flow1:flow1, flow2:flow2, flowAgendar:flowAgendar};
+      const hist = flowHistory[activeFlow];
+      const curNode = hist[hist.length-1];
+      const node = flows[activeFlow][curNode];
+      if(node){
+        if(node.end){
+          // La llamada ya terminó dentro de esta pestaña: saltar a lo que de verdad aplica.
+          let target = 'exportar';
+          if(activeFlow==='flow1' && node.success){ target = 'cierre'; }
+          if(activeFlow==='flow2' && node.success){ target = 'cierre'; }
+          goTab(target);
+          window.scrollTo({top:0, behavior:'smooth'});
+          return;
+        }
+        if(node.options && node.options.length === 1){
+          // Un único paso posible: avanzar la conversación, igual que pulsar ese botón.
+          const o = node.options[0];
+          if(o.jumpFlowTo){ jumpFlow(o.jumpFlowTo.flow, o.jumpFlowTo.node); }
+          else if(o.pack){ choosePack(activeFlow, o.pack, o.next); }
+          else { renderFlow(activeFlow, o.next); }
+          window.scrollTo({top:0, behavior:'smooth'});
+          return;
+        }
+      }
+    }
+  }
+  const idx = PAGE_ORDER.indexOf(currentTab());
+  const next = idx + dir;
+  if(next < 0 || next >= PAGE_ORDER.length){ return; }
+  goTab(PAGE_ORDER[next]);
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function updatePageNav(){
+  const idx = PAGE_ORDER.indexOf(currentTab());
+  document.getElementById('pageNavPrev').disabled = (idx <= 0);
+  document.getElementById('pageNavNext').disabled = (idx >= PAGE_ORDER.length-1);
+  document.getElementById('pageNavLabel').textContent = (idx+1)+' / '+PAGE_ORDER.length+' · '+PAGE_TITLES[PAGE_ORDER[idx]];
+}
+updatePageNav();
+
+let ficha = {};
+const FICHA_FIELDS = ['closer','contacto','despacho','provincia','ciudad','especialidad','equipo','telefono_fijo','telefono_movil','email','pack','crmlink','notas','fecha','hora','importancia','confianza'];
+FICHA_FIELDS.forEach(f=>{ ficha[f] = localStorage.getItem('legalitum_f_'+f) || ''; });
+ficha.objeciones1 = JSON.parse(localStorage.getItem('legalitum_objeciones1')||'[]');
+ficha.objeciones2 = JSON.parse(localStorage.getItem('legalitum_objeciones2')||'[]');
+ficha.bloqueParada1 = localStorage.getItem('legalitum_bloqueParada1') || '';
+ficha.bloqueParada2 = localStorage.getItem('legalitum_bloqueParada2') || '';
+
+function setF(el){
+  ficha[el.dataset.f] = el.value;
+  localStorage.setItem('legalitum_f_'+el.dataset.f, el.value);
+  if(el.dataset.f==='despacho'){
+    document.getElementById('despachoInput').value = el.value;
+    localStorage.setItem('legalitum_despachoname', el.value);
+  }
+  document.getElementById('ficha-status').textContent = '✓ Guardado en este navegador';
+  refreshVisibleFlows();
+}
+function refreshVisibleFlows(){
+  ['flow1','flow2','flowAgendar'].forEach(flowName=>{
+    const hist = flowHistory[flowName];
+    if(hist && hist.length){
+      renderFlow(flowName, hist[hist.length-1], false);
+    }
+  });
+}
+
+// ---------- Fichas guardadas (varios despachos) ----------
+function getFichasGuardadas(){
+  return JSON.parse(localStorage.getItem('legalitum_fichas')||'[]');
+}
+function saveFichasGuardadas(arr){
+  localStorage.setItem('legalitum_fichas', JSON.stringify(arr));
+}
+function guardarFichaActual(){
+  const snapshot = {};
+  FICHA_FIELDS.forEach(f=>{ snapshot[f] = ficha[f]||''; });
+  snapshot.objeciones1 = ficha.objeciones1||[];
+  snapshot.objeciones2 = ficha.objeciones2||[];
+  snapshot.bloqueParada1 = ficha.bloqueParada1||'';
+  snapshot.bloqueParada2 = ficha.bloqueParada2||'';
+  const arr = getFichasGuardadas();
+  const entry = {
+    id: 'f'+Date.now(),
+    despacho: ficha.despacho || '(sin nombre de despacho)',
+    contacto: ficha.contacto || '',
+    savedAt: new Date().toLocaleString('es-ES'),
+    data: snapshot
+  };
+  arr.push(entry);
+  saveFichasGuardadas(arr);
+  document.getElementById('ficha-status').textContent = '✓ Ficha guardada en la lista';
+  renderFichasGuardadas();
+}
+function cargarFicha(id){
+  const arr = getFichasGuardadas();
+  const entry = arr.find(e=>e.id===id);
+  if(!entry) return;
+  FICHA_FIELDS.forEach(f=>{
+    ficha[f] = entry.data[f]||'';
+    localStorage.setItem('legalitum_f_'+f, ficha[f]);
+  });
+  ficha.objeciones1 = entry.data.objeciones1||[];
+  ficha.objeciones2 = entry.data.objeciones2||[];
+  ficha.bloqueParada1 = entry.data.bloqueParada1||'';
+  ficha.bloqueParada2 = entry.data.bloqueParada2||'';
+  localStorage.setItem('legalitum_objeciones1', JSON.stringify(ficha.objeciones1));
+  localStorage.setItem('legalitum_objeciones2', JSON.stringify(ficha.objeciones2));
+  localStorage.setItem('legalitum_bloqueParada1', ficha.bloqueParada1);
+  localStorage.setItem('legalitum_bloqueParada2', ficha.bloqueParada2);
+  aplicarFichaAlDOM();
+  document.getElementById('ficha-status').textContent = '✓ Ficha cargada: '+entry.despacho;
+}
+function eliminarFicha(id){
+  const arr = getFichasGuardadas().filter(e=>e.id!==id);
+  saveFichasGuardadas(arr);
+  renderFichasGuardadas();
+}
+function nuevaFicha(){
+  FICHA_FIELDS.forEach(f=>{
+    if(f==='closer') return; // mantener el closer seleccionado, suele ser la misma persona en la siguiente llamada
+    ficha[f] = '';
+    localStorage.setItem('legalitum_f_'+f, '');
+  });
+  ficha.objeciones1 = []; ficha.objeciones2 = [];
+  ficha.bloqueParada1 = ''; ficha.bloqueParada2 = '';
+  localStorage.setItem('legalitum_objeciones1','[]');
+  localStorage.setItem('legalitum_objeciones2','[]');
+  localStorage.setItem('legalitum_bloqueParada1','');
+  localStorage.setItem('legalitum_bloqueParada2','');
+  aplicarFichaAlDOM();
+  startFlow('flow1'); startFlow('flow2'); startFlow('flowAgendar');
+  document.getElementById('ficha-status').textContent = '✓ Ficha nueva, en blanco (se mantiene el closer)';
+}
+function aplicarFichaAlDOM(){
+  document.querySelectorAll('[data-f]').forEach(el=>{ el.value = ficha[el.dataset.f]||''; });
+  document.getElementById('despachoInput').value = ficha.despacho||'';
+  const presetClosers2 = ['María','Sandra','Montse','Patricia'];
+  if(ficha.closer && presetClosers2.indexOf(ficha.closer)>-1){ closerSelect.value = ficha.closer; closerOtro.style.display='none'; }
+  else if(ficha.closer){ closerSelect.value = '__otro__'; closerOtro.style.display='block'; closerOtro.value = ficha.closer; }
+  else { closerSelect.value=''; closerOtro.style.display='none'; }
+  const ciudadPreset = [...ciudadSelect.options].some(o=>o.value===ficha.ciudad);
+  if(ficha.ciudad && ciudadPreset){ ciudadSelect.value = ficha.ciudad; ciudadOtro.style.display='none'; }
+  else if(ficha.ciudad){ ciudadSelect.value = '__otro__'; ciudadOtro.style.display='block'; ciudadOtro.value = ficha.ciudad; }
+  else { ciudadSelect.value=''; ciudadOtro.style.display='none'; }
+  refreshVisibleFlows();
+}
+function renderFichasGuardadas(){
+  const box = document.getElementById('fichas-guardadas-list');
+  const arr = getFichasGuardadas();
+  if(!arr.length){ box.innerHTML = '<div class="flow-note">Todavía no has guardado ninguna ficha.</div>'; return; }
+  let html = '';
+  arr.slice().reverse().forEach(e=>{
+    html += '<div class="card" style="margin-top:8px; display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap;">';
+    html += '<div><strong style="color:var(--gold-soft);">'+e.despacho+'</strong><br><span style="font-size:.8rem; color:var(--ink-faint);">'+(e.contacto?e.contacto+' · ':'')+e.savedAt+'</span></div>';
+    html += '<div class="send-row" style="margin:0;">';
+    html += '<button class="btn ghost" onclick="cargarFicha(\''+e.id+'\')">Cargar</button>';
+    html += '<button class="btn ghost" onclick="eliminarFicha(\''+e.id+'\')">Eliminar</button>';
+    html += '</div></div>';
+  });
+  box.innerHTML = html;
+}
+renderFichasGuardadas();
+
+// restaurar valores guardados en los inputs al cargar
+document.querySelectorAll('[data-f]').forEach(el=>{
+  const f = el.dataset.f;
+  if(ficha[f]){ el.value = ficha[f]; }
+});
+document.getElementById('despachoInput').value = ficha.despacho || localStorage.getItem('legalitum_despachoname') || '';
+document.getElementById('despachoInput').addEventListener('input', function(){
+  ficha.despacho = this.value;
+  localStorage.setItem('legalitum_f_despacho', this.value);
+  localStorage.setItem('legalitum_despachoname', this.value);
+  document.querySelectorAll('[data-f="despacho"]').forEach(i=>i.value=this.value);
+});
+
+// selector de setter-closer (María/Sandra/Montse/Patricia u "otro")
+const presetClosers = ['María','Sandra','Montse','Patricia'];
+const closerSelect = document.getElementById('closer-select');
+const closerOtro = document.getElementById('closer-otro');
+if(ficha.closer){
+  if(presetClosers.indexOf(ficha.closer)>-1){
+    closerSelect.value = ficha.closer;
+  } else {
+    closerSelect.value = '__otro__';
+    closerOtro.style.display = 'block';
+    closerOtro.value = ficha.closer;
+  }
+}
+function handleCloserSelect(sel){
+  if(sel.value === '__otro__'){
+    closerOtro.style.display = 'block';
+    closerOtro.focus();
+  } else {
+    closerOtro.style.display = 'none';
+    ficha.closer = sel.value;
+    localStorage.setItem('legalitum_f_closer', sel.value);
+    document.getElementById('ficha-status').textContent = '✓ Guardado en este navegador';
+    refreshVisibleFlows();
+  }
+}
+
+const ciudadSelect = document.getElementById('ciudad-select');
+const ciudadOtro = document.getElementById('ciudad-otro');
+if(ficha.ciudad){
+  const presetOpt = [...ciudadSelect.options].some(o=>o.value===ficha.ciudad);
+  if(presetOpt){
+    ciudadSelect.value = ficha.ciudad;
+  } else {
+    ciudadSelect.value = '__otro__';
+    ciudadOtro.style.display = 'block';
+    ciudadOtro.value = ficha.ciudad;
+  }
+}
+function handleCiudadSelect(sel){
+  if(sel.value === '__otro__'){
+    ciudadOtro.style.display = 'block';
+    ciudadOtro.focus();
+  } else {
+    ciudadOtro.style.display = 'none';
+    ficha.ciudad = sel.value;
+    localStorage.setItem('legalitum_f_ciudad', sel.value);
+    document.getElementById('ficha-status').textContent = '✓ Guardado en este navegador';
+    refreshVisibleFlows();
+  }
+}
+
+function fill(text){
+  return text
+    .replace(/\[Closer\]/g, ficha.closer || '[Closer]')
+    .replace(/\[Contacto\]/g, ficha.contacto || '[Contacto]')
+    .replace(/\[Despacho\]/g, ficha.despacho || 'su despacho')
+    .replace(/\[Provincia\]/g, ficha.provincia || '[zona]')
+    .replace(/\[Especialidad\]/g, ficha.especialidad || '[especialidad]')
+    .replace(/\[Pack\]/g, ficha.pack || '[pack elegido]')
+    .replace(/\[fecha\]/g, ficha.fecha || '[fecha]')
+    .replace(/\[hora\]/g, ficha.hora || '[hora]');
+}
+function openWA(text){
+  const phone = (ficha.telefono_movil||'').replace(/\D/g,'');
+  if(!phone){ alert('Añade el teléfono del despacho en la Ficha del despacho.'); return false; }
+  window.open('https://wa.me/'+phone+'?text='+encodeURIComponent(text), '_blank');
+  return false;
+}
+function openMail(subject, body){
+  const email = ficha.email || '';
+  window.open('mailto:'+email+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body), '_blank');
+  return false;
+}
+
+// ---------- Enlace fijo de Google Meet (configuración general, no por despacho) ----------
+let meetLink = localStorage.getItem('legalitum_meetlink') || '';
+document.getElementById('meetlink-input').value = meetLink;
+function setMeetLink(val){
+  meetLink = val;
+  localStorage.setItem('legalitum_meetlink', val);
+  document.getElementById('meetlink-status').textContent = '✓ Guardado en este navegador';
+  updateMeetReminder();
+}
+function updateMeetReminder(){
+  const el = document.getElementById('meet-reminder');
+  if(!el) return;
+  el.style.display = meetLink ? 'none' : 'block';
+}
+updateMeetReminder();
+function openMeet(){
+  if(!meetLink){ alert('Añade primero el enlace fijo de Google Meet en la pestaña Prospección.'); return false; }
+  window.open(meetLink, '_blank');
+  return false;
+}
+function meetSendMsg(){
+  if(!meetLink){ return 'Añade primero el enlace fijo de Google Meet en la pestaña Prospección.'; }
+  return fill('Hola [Contacto], le paso el enlace de la videollamada con LEGALITUM: '+meetLink+'. Nos vemos ahora.');
+}
+function sendMeetLink(via){
+  if(!meetLink){ alert('Añade primero el enlace fijo de Google Meet en la pestaña Prospección.'); return false; }
+  const msg = meetSendMsg();
+  if(via==='wa'){ return openWA(msg); }
+  return openMail('Enlace de la videollamada · LEGALITUM', msg);
+}
+
+const flow1 = {
+  start:{
+    tag:'Apertura (15-20s)',
+    script:'"Buenos días, ¿sería tan amable de ponerme con [Contacto]? Soy [Closer], del equipo de LEGALITUM. Estamos seleccionando despachos especializados en [Especialidad] en la provincia de [Provincia] para presentarles una propuesta de clientes ya interesados en sus servicios, sin inversión publicitaria por su parte. ¿Dispone de dos minutos?"',
+    options:[
+      {t:'Responde con interés / dice que sí', next:'filtro_zona'},
+      {t:'Objeción: "ya tengo suficientes clientes"', cls:'obj', next:'obj_yatengo'},
+      {t:'Objeción: "mándame información por email"', cls:'obj', next:'obj_email'},
+      {t:'Objeción: "no tengo tiempo ahora"', cls:'obj', next:'obj_tiempo'},
+      {t:'No responde / corta la llamada', cls:'warn', next:'noresponde'}
+    ]
+  },
+  filtro_zona:{
+    tag:'Filtro rápido 1/2 · Zona',
+    script:'"Confirmamos que atienden a sus clientes desde la provincia de [Provincia], ¿correcto? Damos exclusividad zonal, solo un despacho por área."',
+    note:'Filtro de exclusión dura: si la zona ya está cubierta, no hay negociación posible.',
+    options:[
+      {t:'Zona confirmada y libre', cls:'win', next:'filtro_equipo'},
+      {t:'Zona ya cubierta por otro despacho', cls:'warn', next:'no_cumple_temprano'}
+    ]
+  },
+  filtro_equipo:{
+    tag:'Filtro rápido 2/2 · Equipo y experiencia',
+    script:'"¿Cuántas personas forman el equipo y desde hace cuánto trabajan [Especialidad]?"',
+    note:'Filtro de exclusión dura: equipo mínimo de 2 personas y mínimo 12 meses de experiencia.',
+    options:[
+      {t:'Cumple (2+ personas, 12+ meses de experiencia)', cls:'win', next:'diagnostico'},
+      {t:'No cumple (equipo insuficiente o poca experiencia)', cls:'warn', next:'no_cumple_temprano'}
+    ]
+  },
+  diagnostico:{
+    tag:'Diagnóstico rápido',
+    script:'"Y ahora mismo, ¿cómo están captando clientes nuevos: publicidad propia, referidos, o ya trabajan con alguna otra red de leads?"',
+    note:'Cualificar sobre el dolor real antes de proponer la demo, no soltar el pitch en frío.',
+    options:[
+      {t:'Publicidad propia (Google/Meta)', next:'interes_publicidad'},
+      {t:'Referidos / boca a boca', next:'interes_referidos'},
+      {t:'Ya usan otro proveedor de leads', next:'interes_otroproveedor'}
+    ]
+  },
+  interes_publicidad:{
+    tag:'Pitch de valor (tras diagnóstico: publicidad propia)',
+    script:'"Entonces sabe bien lo que cuesta captar sin garantías de resultado. Le propongo algo mejor que explicárselo por teléfono: le enseño en directo, en el CRM real de un cliente activo, cómo le llegan clientes cada semana de forma constante, sin esa inversión. ¿Quiere que se lo demuestre ahora mismo, o prefiere que agendemos una llamada para otro momento?"',
+    options:[
+      {t:'Hacer la demo ahora mismo, sin colgar', cls:'win', primary:true, next:'demo_ahora'},
+      {t:'Cerrar ya, sin necesidad de demo', primary:true, next:'cierre_excepcional'},
+      {t:'Agendar para otro momento', cls:'win', primary:true, jumpFlowTo:{flow:'flowAgendar',node:'agendar'}},
+      {t:'Pide más información antes de decidir', next:'masinfo'},
+      {t:'Pregunta cuánto cuesta antes de decidir', next:'preg_precio'}
+    ]
+  },
+  interes_referidos:{
+    tag:'Pitch de valor (tras diagnóstico: referidos)',
+    script:'"Entonces el volumen depende de la suerte del mes, no de un sistema. Le propongo algo mejor que explicárselo por teléfono: le enseño en directo, en el CRM real de un cliente activo, cómo le llegan clientes cada semana de forma constante. ¿Quiere que se lo demuestre ahora mismo, o prefiere que agendemos una llamada para otro momento?"',
+    options:[
+      {t:'Hacer la demo ahora mismo, sin colgar', cls:'win', primary:true, next:'demo_ahora'},
+      {t:'Cerrar ya, sin necesidad de demo', primary:true, next:'cierre_excepcional'},
+      {t:'Agendar para otro momento', cls:'win', primary:true, jumpFlowTo:{flow:'flowAgendar',node:'agendar'}},
+      {t:'Pide más información antes de decidir', next:'masinfo'},
+      {t:'Pregunta cuánto cuesta antes de decidir', next:'preg_precio'}
+    ]
+  },
+  interes_otroproveedor:{
+    tag:'Pitch de valor (tras diagnóstico: ya usan otro proveedor)',
+    script:'"Entonces sabrá valorar bien la diferencia. Le propongo algo mejor que explicárselo por teléfono: le enseño en directo, en el CRM real de un cliente activo, cómo le llegan clientes cada semana de forma constante. ¿Quiere que se lo demuestre ahora mismo, o prefiere que agendemos una llamada para otro momento?"',
+    options:[
+      {t:'Hacer la demo ahora mismo, sin colgar', cls:'win', primary:true, next:'demo_ahora'},
+      {t:'Cerrar ya, sin necesidad de demo', primary:true, next:'cierre_excepcional'},
+      {t:'Agendar para otro momento', cls:'win', primary:true, jumpFlowTo:{flow:'flowAgendar',node:'agendar'}},
+      {t:'Pide más información antes de decidir', next:'masinfo'},
+      {t:'Pregunta cuánto cuesta antes de decidir', next:'preg_precio'}
+    ]
+  },
+  no_cumple_temprano:{
+    tag:'Fin · no cumple el filtro mínimo',
+    end:true,
+    script:'"Entiendo. El programa exige equipo mínimo y experiencia demostrable. Si en unos meses evoluciona el despacho, lo revisamos encantados."',
+    note:'Registrar en la ficha como despacho no admitido por filtro rápido. No se ofrece demo en este caso.'
+  },
+  preg_precio:{
+    tag:'Reencuadre · no adelantar precio',
+    script:'"Prefiero que lo vea primero funcionando, así el precio tiene sentido con lo que está recibiendo. Se lo detallamos todo en la demo, que le lleva 15 minutos."',
+    options:[{t:'Acepta agendar la demo', jumpFlowTo:{flow:'flowAgendar',node:'agendar'}}]
+  },
+  masinfo:{
+    tag:'Refuerzo con autoridad',
+    script:'"En los últimos 12 meses hemos derivado más de 2.400 clientes a despachos asociados, y el 92% de los despachos en España señala la captación como su principal reto. La demo le lleva 15 minutos y verá si encaja con el suyo."',
+    options:[
+      {t:'Acepta agendar', jumpFlowTo:{flow:'flowAgendar',node:'agendar'}},
+      {t:'Objeción: "ya tengo suficientes clientes"', cls:'obj', next:'obj_yatengo'},
+      {t:'Objeción: "mándame información por email"', cls:'obj', next:'obj_email'}
+    ]
+  },
+  obj_yatengo:{
+    tag:'Reencuadre',
+    script:'"Me alegra, buscamos despachos que sepan convertir. El modelo es escalable: cuando necesita volumen, abrimos tráfico; cuando está saturado, lo cerramos. La demo no le compromete a nada, solo le enseña cómo funciona."',
+    options:[
+      {t:'Acepta agendar tras el reencuadre', jumpFlowTo:{flow:'flowAgendar',node:'agendar'}},
+      {t:'Sigue reticente', next:'masinfo'}
+    ]
+  },
+  obj_email:{
+    tag:'Reencuadre',
+    script:'"Se la envío ahora mismo. Pero la demo es porque cada despacho tiene zona, especialidad y operativa distinta; en 15 minutos ve si el encaje es real, algo que un email no le puede enseñar."',
+    options:[
+      {t:'Acepta agendar tras el reencuadre', jumpFlowTo:{flow:'flowAgendar',node:'agendar'}},
+      {t:'Insiste en solo email', cls:'warn', next:'noresponde'}
+    ]
+  },
+  obj_tiempo:{
+    tag:'Reencuadre · tiempo',
+    script:'"Lo entiendo, por eso la demo son solo 15 minutos y se la agendo cuando mejor le venga, incluso fuera de horario de oficina si lo prefiere."',
+    options:[{t:'Acepta agendar', jumpFlowTo:{flow:'flowAgendar',node:'agendar'}}]
+  },
+  noresponde:{
+    tag:'Fin de llamada · mensaje de seguimiento',
+    end:true,
+    sendable:true,
+    script:'"Seguimos activando cupos por zona y especialidad, y [Provincia] sigue libre por ahora. En cuanto le venga bien, retomamos la conversación."',
+    message:'Hola [Contacto], le dejamos este mensaje de seguimiento del equipo de LEGALITUM: seguimos activando cupos por zona y especialidad, y [Provincia] sigue libre por ahora. En cuanto le venga bien, retomamos la conversación. Un saludo.',
+    note:'Registrar en la ficha como seguimiento pendiente. No se agenda nada en esta llamada. Envía el mensaje por WhatsApp o email con los botones de abajo.'
+  },
+  demo_ahora:{
+    tag:'Demo en la misma llamada ✓',
+    demoTools:true,
+    script:'"Perfecto, no colgamos entonces. Le mando ahora mismo el enlace de la videollamada."',
+    note:'1) Abrir Google Meet y enviar el enlace al despacho · 2) Una vez conectados, abrir el CRM y compartir pantalla.',
+    options:[{t:'Terminada la demo, preguntar impresión', next:'l1_diag_reaccion'}]
+  },
+  l1_diag_reaccion:{
+    tag:'Diagnóstico tras la demo 1/2',
+    script:'"¿Qué le ha parecido lo que acaba de ver?"',
+    options:[
+      {t:'Reacción positiva ("me gusta", "interesante")', cls:'win', next:'l1_diag_utilidad'},
+      {t:'Reacción dudosa o poco entusiasta', cls:'warn', next:'l1_diag_reaccion_duda'}
+    ]
+  },
+  l1_diag_reaccion_duda:{
+    tag:'Reencuadre · reacción tibia',
+    script:'"Entiendo, a veces cuesta verlo a la primera. ¿Qué es lo que le genera más dudas: el volumen, la calidad de los leads o el precio?"',
+    note:'Si la duda es de calidad, se puede volver a la demo y enseñar de nuevo el movimiento real.',
+    options:[
+      {t:'Aclarada la duda, seguimos', next:'l1_diag_utilidad'},
+      {t:'Vuelve a dudar de la calidad → repetir demo', next:'demo_ahora'}
+    ]
+  },
+  l1_diag_utilidad:{
+    tag:'Diagnóstico tras la demo 2/2',
+    script:'"¿Cree que esto podría ser útil para el despacho, tal y como lo acaba de ver funcionar?"',
+    options:[
+      {t:'Sí, claramente útil', cls:'win', next:'l1_packs'},
+      {t:'Podría ser, pero no está del todo seguro', next:'l1_diag_utilidad_duda'}
+    ]
+  },
+  l1_diag_utilidad_duda:{
+    tag:'Reencuadre antes de presentar los packs',
+    script:'"Le entiendo. Por eso justo tiene sentido empezar con el Pack 1, de 100 leads cualificados por 1.400€, para probar el sistema sin comprometerse a gran escala."',
+    options:[{t:'Continuar a los packs', next:'l1_packs'}]
+  },
+  l1_packs:{
+    tag:'Presentación de los packs disponibles',
+    script:'"Tenemos dos packs cerrados disponibles ahora mismo: 100 leads cualificados por 1.400€, o 50 leads ultra cualificados y agendados por 2.500€. Según lo que me cuenta de su capacidad comercial, le recomiendo uno u otro."',
+    termometro:true,
+    options:[
+      {t:'Elige Pack 1 · 100 leads cualificados, 1.400€', cls:'win', pack:'Pack 1 (100 leads cualificados, 1.400€)', next:'l1_cierre'},
+      {t:'Elige Pack 2 · 50 ultra cualificados + agendados, 2.500€', cls:'win', pack:'Pack 2 (50 ultra cualificados + agendados, 2.500€)', next:'l1_cierre'},
+      {t:'Objeción: "14€ por lead me parece caro" (Pack 1)', cls:'obj', next:'l1_obj_caro'},
+      {t:'Objeción: "50€ por lead me parece caro" (Pack 2)', cls:'obj', next:'l1_obj_caro2'},
+      {t:'Objeción: "¿y si los leads no son buenos?"', cls:'obj', next:'l1_obj_calidad'},
+      {t:'Objeción: "¿vendéis el mismo lead a varios despachos?"', cls:'obj', next:'l1_obj_reventa'},
+      {t:'Objeción: "¿me devolvéis el dinero si los leads no son buenos?"', cls:'obj', next:'l1_obj_devolucion'},
+      {t:'Objeción: "tengo que hablarlo con mi socio"', cls:'obj', next:'l1_obj_socio'},
+      {t:'Pregunta: "¿cuál es la diferencia entre el Pack 1 y el Pack 2?"', next:'l1_diferencia_packs'},
+      {t:'Pregunta por hojas de encargo firmadas (Pack 3)', next:'l1_pack3_info'}
+    ]
+  },
+  l1_diferencia_packs:{
+    tag:'Diferencia entre Pack 1 y Pack 2',
+    script:'"El Pack 1 son leads validados por IA y call center, con el interés confirmado: usted hace la venta desde cero. El Pack 2 va un paso más allá: además de validado, ya hemos pre vendido su despacho en la llamada y le damos la cita agendada a hora fijada. Usted solo tiene que atender, no cerrar desde cero."',
+    options:[{t:'Volver a los packs', next:'l1_packs'}]
+  },
+  l1_pack3_info:{
+    tag:'Pack 3 · en preparación',
+    script:'"Ese producto, con hoja de encargo ya firmada, lo iremos lanzando a lo largo del año. En cuanto lo activemos, avisamos primero a los despachos que ya están trabajando con nosotros."',
+    note:'No ofrecer el Pack 3 como venta cerrada hoy. Es información, no una opción de compra.',
+    options:[{t:'Volver a los packs disponibles', next:'l1_packs'}]
+  },
+  l1_obj_caro:{
+    tag:'Reencuadre · precio Pack 1',
+    script:'"Con el Pack 1 y una conversión conservadora del 20-30%, son entre 20 y 30 clientes. Con un honorario medio de 3.500€, la facturación potencial es de 70.000€ frente a una inversión de 1.400€."',
+    options:[{t:'Volver a los packs', next:'l1_packs'}]
+  },
+  l1_obj_caro2:{
+    tag:'Reencuadre · precio Pack 2',
+    script:'"Con el Pack 2, manejando una conversión realista del 30-50%, son entre 15 y 25 clientes. Con un honorario medio de 3.500€, la facturación potencial es de 52.500€ a 87.500€ frente a una inversión de 2.500€, y llegan ya agendados."',
+    options:[{t:'Volver a los packs', next:'l1_packs'}]
+  },
+  l1_obj_calidad:{
+    tag:'Reencuadre · calidad (volver a demostrar, no argumentar)',
+    script:'No se argumenta: se muestra de nuevo. Volver al CRM en vivo y enseñar el movimiento real de leads de otro cliente activo antes de seguir con la objeción de precio.',
+    options:[{t:'Volver a la demo', next:'demo_ahora'}]
+  },
+  l1_obj_reventa:{
+    tag:'Reencuadre · exclusividad',
+    script:'"No. Sus clientes son exclusivos para usted y no se revenden a otros despachos."',
+    options:[{t:'Volver a los packs', next:'l1_packs'}]
+  },
+  l1_obj_devolucion:{
+    tag:'Reencuadre · devolución (no prometer, solo validación)',
+    script:'"Ahora mismo no tenemos confirmada una política de devolución. Lo que sí le puedo garantizar es la validación previa: cada lead pasa por IA, call center y verificación telefónica antes de llegar a su despacho, por eso le hemos enseñado el CRM en vivo, para que vea la calidad real antes de decidir."',
+    note:'Nunca prometer un reembolso ni un porcentaje de devolución que no esté confirmado por escrito con LEGALITUM.',
+    options:[{t:'Volver a los packs', next:'l1_packs'}]
+  },
+  l1_obj_socio:{
+    tag:'Reencuadre · decisión compartida',
+    script:'"Claro, es una decisión estratégica. Le envío un resumen de los packs con lo que acaba de ver en la demo, y agendamos una llamada breve con los dos juntos para resolver dudas."',
+    sendable:true,
+    message:'Hola [Contacto], le envío el resumen de los packs con lo que hemos visto en la demo, para que puedan revisarlo con calma. Cuando le venga bien, agendamos una llamada breve con los dos para resolver cualquier duda. Un saludo, equipo LEGALITUM.',
+    options:[{t:'Registrar seguimiento pendiente', next:'l1_pendiente'}]
+  },
+  l1_pendiente:{
+    tag:'Fin · seguimiento pendiente',
+    end:true,
+    script:'Registrar en la ficha la fecha de seguimiento con el socio. No forzar el cierre en esta llamada.',
+    note:''
+  },
+  l1_cierre:{
+    tag:'Cierre y confirmación ✓',
+    end:true,
+    success:true,
+    jumpToTab:'cierre',
+    closeConfirm:true,
+    script:'"Perfecto, activamos [Pack]. Le confirmo por email las condiciones de pago: 50% ahora y 50% al completar el volumen, más el acceso al CRM Spaces Intelligence para el seguimiento. ¿A qué correo se lo envío?"',
+    note:'Objetivo cumplido: registrar pack e importe en la Ficha del despacho. Escribe el correo y envía la confirmación con el botón de abajo.'
+  },
+  cierre_excepcional:{
+    tag:'Cierre excepcional en la misma sesión',
+    script:'Si el despacho está muy convencido y no quiere esperar a la demo, se puede saltar directamente a la presentación de packs.',
+    options:[{t:'Presentar packs y cerrar', next:'l1_packs'}]
+  },
+};
+
+const flowAgendar = {
+  agendar:{
+    tag:'Cierre de la Llamada 1 ✓',
+    end:true,
+    success:true,
+    schedule:true,
+    script:'"¿Qué día y a qué hora le viene bien para la demo? ¿Se la confirmo por email o por WhatsApp?"',
+    note:'Elige día y hora abajo y envía la confirmación por WhatsApp o email.'
+  }
+};
+
+const flow2 = {
+  start:{
+    tag:'Apertura de la demo',
+    script:'"Buenos días [Contacto], soy [Closer], del equipo de LEGALITUM, retomamos lo que quedamos: le voy a enseñar en directo el CRM real de un cliente activo para que vea el volumen de leads que recibe un despacho como el suyo. Antes, le confirmo dos datos rápidos."',
+    options:[{t:'Pasar a cualificación', next:'cualif_capacidad'}]
+  },
+  cualif_capacidad:{
+    tag:'Cualificación 1/2 · Capacidad de respuesta',
+    script:'"Con el equipo que ya me comentó, ¿podrían contactar el lead el mismo día, de 9 a 19h, en menos de 15 minutos?"',
+    note:'Zona, especialidad y experiencia ya se confirmaron en el filtro rápido de la Llamada 1 — no repetirlas aquí.',
+    options:[
+      {t:'Cumple (respuesta <15 min, horario 9-19h)', cls:'win', next:'cualif_procesos'},
+      {t:'No cumple capacidad de respuesta', cls:'warn', next:'nocumple'}
+    ]
+  },
+  cualif_procesos:{
+    tag:'Cualificación 2/2 · Proceso de contratación',
+    script:'"¿Tienen el proceso de contratación y firma de sus propios clientes ya digitalizado? La fricción en ese paso puede matar el cierre."',
+    options:[
+      {t:'Cumple (procesos y firma digital listos)', cls:'win', next:'demo'},
+      {t:'No tiene procesos digitales, pero puede prepararlos', next:'demo'},
+      {t:'No cumple y no puede prepararlos', cls:'warn', next:'nocumple'}
+    ]
+  },
+  nocumple:{
+    tag:'Fin · no admitido',
+    end:true,
+    script:'"Entiendo. El programa exige equipo mínimo, atención inmediata y procesos documentados. Si en unos meses evoluciona el despacho, lo revisamos encantados."',
+    note:'Registrar en ficha como despacho no admitido por criterios.'
+  },
+  demo:{
+    tag:'Demo en vivo · Spaces Intelligence',
+    demoTools:true,
+    script:'"Le enseño ahora mismo, en el CRM real de un cliente activo, cómo le llegan clientes cada semana de forma constante."',
+    note:'1) Abrir Google Meet si aún no estáis conectados · 2) Abrir el CRM y compartir pantalla con el enlace guardado en la Ficha del despacho.',
+    options:[{t:'Terminada la demo, preguntar impresión', next:'diag_reaccion'}]
+  },
+  diag_reaccion:{
+    tag:'Diagnóstico tras la demo 1/2',
+    script:'"¿Qué le ha parecido lo que acaba de ver?"',
+    options:[
+      {t:'Reacción positiva ("me gusta", "interesante")', cls:'win', next:'diag_utilidad'},
+      {t:'Reacción dudosa o poco entusiasta', cls:'warn', next:'diag_reaccion_duda'}
+    ]
+  },
+  diag_reaccion_duda:{
+    tag:'Reencuadre · reacción tibia',
+    script:'"Entiendo, a veces cuesta verlo a la primera. ¿Qué es lo que le genera más dudas: el volumen, la calidad de los leads o el precio?"',
+    note:'Escuchar la duda concreta antes de seguir. Si es sobre calidad, se puede volver a la demo y enseñar de nuevo el movimiento real.',
+    options:[
+      {t:'Aclarada la duda, seguimos', next:'diag_utilidad'},
+      {t:'Vuelve a dudar de la calidad → repetir demo', next:'demo'}
+    ]
+  },
+  diag_utilidad:{
+    tag:'Diagnóstico tras la demo 2/2',
+    script:'"¿Cree que esto podría ser útil para el despacho, tal y como lo acaba de ver funcionar?"',
+    options:[
+      {t:'Sí, claramente útil', cls:'win', next:'packs'},
+      {t:'Podría ser, pero no está del todo seguro', next:'diag_utilidad_duda'}
+    ]
+  },
+  diag_utilidad_duda:{
+    tag:'Reencuadre antes de presentar los packs',
+    script:'"Le entiendo. Por eso justo tiene sentido empezar con el Pack 1, de 100 leads cualificados por 1.400€, para probar el sistema sin comprometerse a gran escala."',
+    options:[{t:'Continuar a los packs', next:'packs'}]
+  },
+  packs:{
+    tag:'Presentación de los packs disponibles',
+    script:'"Tenemos dos packs cerrados disponibles ahora mismo: 100 leads cualificados por 1.400€, o 50 leads ultra cualificados y agendados por 2.500€. Según lo que me cuenta de su capacidad comercial, le recomiendo uno u otro."',
+    termometro:true,
+    options:[
+      {t:'Elige Pack 1 · 100 leads cualificados, 1.400€', cls:'win', pack:'Pack 1 (100 leads cualificados, 1.400€)', next:'cierre'},
+      {t:'Elige Pack 2 · 50 ultra cualificados + agendados, 2.500€', cls:'win', pack:'Pack 2 (50 ultra cualificados + agendados, 2.500€)', next:'cierre'},
+      {t:'Objeción: "14€ por lead me parece caro" (Pack 1)', cls:'obj', next:'obj_caro'},
+      {t:'Objeción: "50€ por lead me parece caro" (Pack 2)', cls:'obj', next:'obj_caro2'},
+      {t:'Objeción: "¿y si los leads no son buenos?"', cls:'obj', next:'obj_calidad'},
+      {t:'Objeción: "¿vendéis el mismo lead a varios despachos?"', cls:'obj', next:'obj_reventa'},
+      {t:'Objeción: "¿me devolvéis el dinero si los leads no son buenos?"', cls:'obj', next:'obj_devolucion'},
+      {t:'Objeción: "tengo que hablarlo con mi socio"', cls:'obj', next:'obj_socio'},
+      {t:'Pregunta: "¿cuál es la diferencia entre el Pack 1 y el Pack 2?"', next:'diferencia_packs'},
+      {t:'Pregunta por hojas de encargo firmadas (Pack 3)', next:'pack3_info'}
+    ]
+  },
+  diferencia_packs:{
+    tag:'Diferencia entre Pack 1 y Pack 2',
+    script:'"El Pack 1 son leads validados por IA y call center, con el interés confirmado: usted hace la venta desde cero. El Pack 2 va un paso más allá: además de validado, ya hemos pre vendido su despacho en la llamada y le damos la cita agendada a hora fijada. Usted solo tiene que atender, no cerrar desde cero."',
+    options:[{t:'Volver a los packs', next:'packs'}]
+  },
+  pack3_info:{
+    tag:'Pack 3 · en preparación',
+    script:'"Ese producto, con hoja de encargo ya firmada, lo iremos lanzando a lo largo del año. En cuanto lo activemos, avisamos primero a los despachos que ya están trabajando con nosotros."',
+    note:'No ofrecer el Pack 3 como venta cerrada hoy. Es información, no una opción de compra.',
+    options:[{t:'Volver a los packs disponibles', next:'packs'}]
+  },
+  obj_caro:{
+    tag:'Reencuadre · precio Pack 1',
+    script:'"Con el Pack 1 y una conversión conservadora del 20-30%, son entre 20 y 30 clientes. Con un honorario medio de 3.500€, la facturación potencial es de 70.000€ frente a una inversión de 1.400€."',
+    options:[{t:'Volver a los packs', next:'packs'}]
+  },
+  obj_caro2:{
+    tag:'Reencuadre · precio Pack 2',
+    script:'"Con el Pack 2, manejando una conversión realista del 30-50%, son entre 15 y 25 clientes. Con un honorario medio de 3.500€, la facturación potencial es de 52.500€ a 87.500€ frente a una inversión de 2.500€, y llegan ya agendados."',
+    options:[{t:'Volver a los packs', next:'packs'}]
+  },
+  obj_calidad:{
+    tag:'Reencuadre · calidad (volver a demostrar, no argumentar)',
+    script:'No se argumenta: se muestra de nuevo. Volver al CRM en vivo y enseñar el movimiento real de leads de otro cliente activo antes de seguir con la objeción de precio.',
+    options:[{t:'Volver a la demo', next:'demo'}]
+  },
+  obj_reventa:{
+    tag:'Reencuadre · exclusividad',
+    script:'"No. Sus clientes son exclusivos para usted y no se revenden a otros despachos."',
+    options:[{t:'Volver a los packs', next:'packs'}]
+  },
+  obj_devolucion:{
+    tag:'Reencuadre · devolución (no prometer, solo validación)',
+    script:'"Ahora mismo no tenemos confirmada una política de devolución. Lo que sí le puedo garantizar es la validación previa: cada lead pasa por IA, call center y verificación telefónica antes de llegar a su despacho, por eso le hemos enseñado el CRM en vivo, para que vea la calidad real antes de decidir."',
+    note:'Nunca prometer un reembolso ni un porcentaje de devolución que no esté confirmado por escrito con LEGALITUM.',
+    options:[{t:'Volver a los packs', next:'packs'}]
+  },
+  obj_socio:{
+    tag:'Reencuadre · decisión compartida',
+    script:'"Claro, es una decisión estratégica. Le envío un resumen de los packs con lo que acaba de ver en la demo, y agendamos una llamada breve con los dos juntos para resolver dudas."',
+    sendable:true,
+    message:'Hola [Contacto], le envío el resumen de los packs con lo que hemos visto en la demo, para que puedan revisarlo con calma. Cuando le venga bien, agendamos una llamada breve con los dos para resolver cualquier duda. Un saludo, equipo LEGALITUM.',
+    options:[{t:'Registrar seguimiento pendiente', next:'pendiente'}]
+  },
+  pendiente:{
+    tag:'Fin · seguimiento pendiente',
+    end:true,
+    script:'Registrar en la ficha la fecha de seguimiento con el socio. No forzar el cierre en esta llamada.',
+    note:''
+  },
+  cierre:{
+    tag:'Cierre y confirmación ✓',
+    end:true,
+    success:true,
+    jumpToTab:'cierre',
+    closeConfirm:true,
+    script:'"Perfecto, activamos [Pack]. Le confirmo por email las condiciones de pago: 50% ahora y 50% al completar el volumen, más el acceso al CRM Spaces Intelligence para el seguimiento. ¿A qué correo se lo envío?"',
+    note:'Objetivo cumplido: registrar pack e importe en la Ficha del despacho. Escribe el correo y envía la confirmación con el botón de abajo.'
+  }
+};
+
+const flowHistory = {flow1:['start'], flow2:['start'], flowAgendar:['agendar']};
+
+function renderFlow(flowName, nodeId, pushHistory){
+  if(pushHistory !== false){
+    flowHistory[flowName].push(nodeId);
+  }
+  const flows = {flow1:flow1, flow2:flow2, flowAgendar:flowAgendar};
+  const flow = flows[flowName];
+  const node = flow[nodeId];
+  const container = document.getElementById(flowName+'-container');
+  const isObjOrigin = nodeId.indexOf('obj_')===0;
+  const objKey = flowName==='flow1' ? 'objeciones1' : (flowName==='flow2' ? 'objeciones2' : null);
+  if(objKey && isObjOrigin && ficha[objKey].indexOf(nodeId)===-1){
+    ficha[objKey].push(nodeId);
+    localStorage.setItem('legalitum_'+objKey, JSON.stringify(ficha[objKey]));
+  }
+  if(node.end){
+    const paradaKey = flowName==='flow1' ? 'bloqueParada1' : (flowName==='flow2' ? 'bloqueParada2' : 'bloqueParadaAgendar');
+    const val = node.tag + (node.success ? ' (éxito)' : ' (sin cierre)');
+    ficha[paradaKey] = val;
+    localStorage.setItem('legalitum_'+paradaKey, val);
+  }
+  let html = '<div class="flow-card'+(node.end?' flow-end':'')+'">';
+  if(isObjOrigin){ html += '<div class="overlay-label">⚠ Objeción del despacho</div>'; }
+  html += '<div class="flow-tag">'+node.tag+'</div>';
+  html += '<div class="flow-script">'+fill(node.script)+'</div>';
+  if(node.note){ html += '<div class="flow-note">'+node.note+'</div>'; }
+  if(node.options){
+    const primaryOpts = node.options.filter(o=>o.primary);
+    const secondaryOpts = node.options.filter(o=>!o.primary);
+    const optAction = (o) => o.jumpFlowTo
+      ? "jumpFlow('"+o.jumpFlowTo.flow+"','"+o.jumpFlowTo.node+"')"
+      : (o.pack
+        ? "choosePack('"+flowName+"','"+o.pack.replace(/'/g,"\\'")+"','"+o.next+"')"
+        : "renderFlow('"+flowName+"','"+o.next+"')");
+    if(primaryOpts.length){
+      html += '<div class="flow-branch-label">Dos caminos posibles desde aquí:</div>';
+      html += '<div class="flow-branch-row">';
+      primaryOpts.forEach(o=>{
+        html += '<button class="flow-branch '+(o.cls||'')+'" onclick="'+optAction(o)+'"><strong>'+o.t+'</strong></button>';
+      });
+      html += '</div>';
+      if(secondaryOpts.length){ html += '<div class="flow-note" style="margin-top:14px;">O si aún no está decidido:</div>'; }
+    }
+    if(secondaryOpts.length){
+      html += '<div class="flow-options">';
+      secondaryOpts.forEach(o=>{
+        html += '<button class="flow-opt '+(o.cls||'')+'" onclick="'+optAction(o)+'">'+o.t+'</button>';
+      });
+      html += '</div>';
+    }
+  }
+  if(node.termometro){
+    html += renderTermometro();
+  }
+  if(node.demoTools){
+    html += '<div class="send-row" style="margin-top:14px;">';
+    html += '<button class="btn" style="background:#1a73e8; color:#fff;" onclick="return openMeet();">📹 Abrir Google Meet</button>';
+    html += '<button class="btn ghost" onclick="if(ficha.crmlink){window.open(ficha.crmlink,\'_blank\');}else{alert(\'Añade primero el enlace del CRM en la Ficha del despacho\');} return false;">🖥️ Abrir CRM demo</button>';
+    html += '</div>';
+    html += '<div class="send-msg" id="msg-meetsend">'+meetSendMsg()+'</div>';
+    html += '<div class="send-row">';
+    html += '<button class="btn wa" onclick="return sendMeetLink(\'wa\');">📱 Enviar enlace de Meet por WhatsApp</button>';
+    html += '<button class="btn mail" onclick="return sendMeetLink(\'mail\');">✉️ Enviar enlace de Meet por email</button>';
+    html += '</div>';
+  }
+  if(node.schedule){
+    html += renderScheduleWidget();
+  }
+  if(node.closeConfirm){
+    html += '<div class="schedule-box">';
+    html += '<label>Correo electrónico del despacho</label>';
+    html += '<input type="email" id="cierre-email-input" value="'+(ficha.email||'')+'" placeholder="correo@despacho.com" oninput="setCierreEmail(this.value)">';
+    html += '<div class="send-msg" id="msg-cierreconfirm">'+cierreConfirmMsg()+'</div>';
+    html += '<div class="send-row">';
+    html += '<button class="btn wa" onclick="return sendCierreConfirm(\'wa\');">📱 Enviar confirmación por WhatsApp</button>';
+    html += '<button class="btn mail" onclick="return sendCierreConfirm(\'mail\');">✉️ Enviar confirmación por email</button>';
+    html += '</div>';
+    html += '</div>';
+  }
+  if(node.sendable){
+    const msg = fill(node.message || node.script.replace(/^"|"$/g,''));
+    html += '<div class="schedule-box">';
+    html += '<label>Correo electrónico del despacho</label>';
+    html += '<input type="email" value="'+(ficha.email||'')+'" placeholder="correo@despacho.com" oninput="setCierreEmail(this.value)">';
+    html += '<div class="send-msg">'+msg+'</div>';
+    html += '<div class="send-row">';
+    html += '<button class="btn wa" onclick="return openWA(\''+msg.replace(/'/g,"\\'")+'\');">📱 Enviar por WhatsApp</button>';
+    html += '<button class="btn mail" onclick="return openMail(\'Seguimiento LEGALITUM\', \''+msg.replace(/'/g,"\\'")+'\');">✉️ Enviar por email</button>';
+    html += '</div>';
+    html += '</div>';
+  }
+  if(node.jumpTo){
+    html += '<button class="btn win-jump" style="margin-top:16px; background:var(--teal); color:#04140b; border:none; padding:12px 20px; border-radius:7px; font-weight:600; cursor:pointer;" onclick="goTab(\''+node.jumpTo+'\'.replace(\'flow\',\'llamada\')); startFlow(\''+node.jumpTo+'\');">→ Continuar ahora en la Llamada 2</button>';
+  }
+  if(node.jumpToTab){
+    html += '<div class="send-row" style="margin-top:16px;">';
+    html += '<button class="btn win-jump" style="background:var(--teal); color:#04140b; border:none; padding:12px 20px; border-radius:7px; font-weight:600; cursor:pointer;" onclick="goTab(\'exportar\'); renderExport();">→ Exportar ficha</button>';
+    html += '</div>';
+  }
+  if(node.jumpToNode){
+    const j = node.jumpToNode;
+    html += '<button class="btn win-jump" style="margin-top:16px; background:var(--teal); color:#04140b; border:none; padding:12px 20px; border-radius:7px; font-weight:600; cursor:pointer;" onclick="jumpFlow(\''+j.flow+'\',\''+j.node+'\');">→ Seguir conversación</button>';
+  }
+  html += '<div class="flow-navrow">';
+  html += '<button class="flow-back" onclick="goBack(\''+flowName+'\')">← Atrás</button>';
+  html += '<button class="flow-restart" onclick="startFlow(\''+flowName+'\')">↺ Reiniciar</button>';
+  html += '</div>';
+  html += '</div>';
+  container.innerHTML = html;
+  if(node.schedule){ refreshScheduleMsgs(); }
+}
+function goBack(flowName){
+  const hist = flowHistory[flowName];
+  if(hist.length > 1){ hist.pop(); }
+  const prev = hist[hist.length-1];
+  renderFlow(flowName, prev, false);
+}
+const FLOW_TAB = {flow1:'llamada1', flow2:'llamada2', flowAgendar:'agendar-demo'};
+function startFlow(flowName){
+  const startNode = flowName==='flowAgendar' ? 'agendar' : 'start';
+  flowHistory[flowName] = [startNode];
+  renderFlow(flowName, startNode, false);
+}
+function jumpFlow(flowName, nodeId){
+  goTab(FLOW_TAB[flowName] || flowName.replace('flow','llamada'));
+  flowHistory[flowName] = [nodeId];
+  renderFlow(flowName, nodeId, false);
+}
+function choosePack(flowName, packLabel, nextNode){
+  ficha.pack = packLabel;
+  localStorage.setItem('legalitum_f_pack', packLabel);
+  document.querySelectorAll('[data-f="pack"]').forEach(s=>s.value=packLabel);
+  renderFlow(flowName, nextNode);
+}
+
+// ---------- Mensaje profesional de confirmación de cierre ----------
+const PACK_DESCRIPTIONS = {
+  'Pack 1 (100 leads cualificados, 1.400€)': 'Pack 1: 100 leads cualificados, validados por IA y call center, por 1.400€',
+  'Pack 2 (50 ultra cualificados + agendados, 2.500€)': 'Pack 2: 50 leads ultra cualificados y agendados (despacho pre vendido en llamada, cita ya agendada), por 2.500€'
+};
+function cierreConfirmMsg(){
+  const desc = PACK_DESCRIPTIONS[ficha.pack] || (ficha.pack || '[pack elegido]');
+  return fill('Hola [Contacto],\n\nSegún nuestra conversación de hoy, le confirmamos que ha elegido el siguiente pack:\n\n'+desc+'.\n\nCondiciones de pago: 50% de adelanto ahora y 50% restante al completar el volumen contratado, con acceso incluido al CRM Spaces Intelligence para el seguimiento de los leads.\n\n¿Podría confirmarnos la recepción de este email y darnos su conformidad para proceder? Quedamos a su disposición para cualquier duda.\n\nUn saludo,\nEquipo LEGALITUM');
+}
+function setCierreEmail(val){
+  ficha.email = val;
+  localStorage.setItem('legalitum_f_email', val);
+  document.querySelectorAll('[data-f="email"]').forEach(i=>i.value=val);
+}
+function sendCierreConfirm(via){
+  if(!ficha.email){ alert('Escribe primero el correo del despacho.'); return false; }
+  const msg = cierreConfirmMsg();
+  if(via==='wa'){ return openWA(msg); }
+  return openMail('Confirmación de pack · LEGALITUM', msg);
+}
+startFlow('flow1');
+startFlow('flow2');
+startFlow('flowAgendar');
+
+function renderTermometro(){
+  return `
+    <div class="termometro-box">
+      <strong style="color:var(--gold);">🌡️ Termómetro de cierre</strong>
+      <div class="flow-note" style="margin:6px 0 0;">Anota las dos cifras reales que ha dado el despacho. Quedan en la ficha como referencia objetiva de qué tan cerca está del cierre, y sirven de base para el futuro informe de análisis de rendimiento.</div>
+      <div class="trow">
+        <label>Importancia que le da a resolver la captación (1-10)
+          <input type="number" min="1" max="10" value="${ficha.importancia||''}" oninput="updateTermometro('importancia', this.value)">
+        </label>
+        <label>Confianza en que el pack funcione (1-10)
+          <input type="number" min="1" max="10" value="${ficha.confianza||''}" oninput="updateTermometro('confianza', this.value)">
+        </label>
+      </div>
+    </div>
+  `;
+}
+function updateTermometro(field, val){
+  ficha[field] = val;
+  localStorage.setItem('legalitum_f_'+field, val);
+}
+
+function renderScheduleWidget(){
+  return `
+    <div class="schedule-box">
+      <div class="schedule-row">
+        <div><label>Día de la demo</label><input type="date" id="sch-fecha" onchange="ficha.fecha=this.value; refreshScheduleMsgs();"></div>
+        <div><label>Hora de la demo</label><input type="time" id="sch-hora" onchange="ficha.hora=this.value; refreshScheduleMsgs();"></div>
+      </div>
+      <div class="send-msg" id="msg-confirmacion"></div>
+      <div class="send-row">
+        <button class="btn wa" onclick="return openWA(document.getElementById('msg-confirmacion').textContent);">📱 Enviar confirmación por WhatsApp</button>
+        <button class="btn mail" onclick="return openMail('Confirmación demo LEGALITUM', document.getElementById('msg-confirmacion').textContent);">✉️ Enviar confirmación por email</button>
+      </div>
+
+      <div class="callout" style="margin-top:18px;"><strong>Recordatorio 24h antes</strong></div>
+      <div class="send-msg" id="msg-recordatorio24"></div>
+      <div class="send-row">
+        <button class="btn wa" onclick="return openWA(document.getElementById('msg-recordatorio24').textContent);">📱 Enviar recordatorio 24h</button>
+        <button class="btn mail" onclick="return openMail('Recordatorio demo LEGALITUM', document.getElementById('msg-recordatorio24').textContent);">✉️ Enviar recordatorio 24h</button>
+      </div>
+
+      <div class="callout" style="margin-top:18px;"><strong>Recordatorio mismo día (con vídeo LEGALITUM)</strong></div>
+      <div class="send-msg" id="msg-mismodia"></div>
+      <div class="send-row">
+        <button class="btn wa" onclick="return openWA(document.getElementById('msg-mismodia').textContent);">📱 Enviar recordatorio del día</button>
+        <button class="btn mail" onclick="return openMail('Hoy es la demo LEGALITUM', document.getElementById('msg-mismodia').textContent);">✉️ Enviar recordatorio del día</button>
+      </div>
+      <div class="flow-note" style="margin-top:10px;">Vídeo de LEGALITUM incluido: https://drive.google.com/file/d/1M5TK0BA1ljuVUmB7srT029u4ZU7rMsqb/view?usp=drive_link</div>
+      <button class="btn ghost" style="margin-top:16px;" onclick="goTab('llamada2')">📞 Pasar directo a la Llamada 2 · Demo y cierre</button>
+    </div>
+  `;
+}
+function refreshScheduleMsgs(){
+  const box1 = document.getElementById('msg-confirmacion');
+  if(!box1) return;
+  const f = ficha.fecha || '[fecha]';
+  const h = ficha.hora || '[hora]';
+  box1.textContent = fill('Hola [Contacto], le confirmamos la videollamada con LEGALITUM para la demo el día '+f+' a las '+h+'. Nos vemos entonces. Un saludo, equipo LEGALITUM.');
+  document.getElementById('msg-recordatorio24').textContent = fill('Hola [Contacto], le recordamos que mañana '+f+' a las '+h+' tenemos la demo en vivo agendada. Cualquier cambio, avíseme. Un saludo, equipo LEGALITUM.');
+  document.getElementById('msg-mismodia').textContent = fill('Hola [Contacto], hoy a las '+h+' tenemos la demo en vivo. Mientras tanto, le dejamos este vídeo breve de LEGALITUM: https://drive.google.com/file/d/1M5TK0BA1ljuVUmB7srT029u4ZU7rMsqb/view?usp=drive_link. Nos vemos en un rato. Un saludo, equipo LEGALITUM.');
+}
+
+function getFichaLines(){
+  return [
+    '=== FICHA DEL DESPACHO · Spaces Intelligence ===',
+    'Setter-closer: '+(ficha.closer||'-'),
+    'Contacto: '+(ficha.contacto||'-'),
+    'Despacho: '+(ficha.despacho||'-'),
+    'Provincia/zona: '+(ficha.provincia||'-'),
+    'Ciudad: '+(ficha.ciudad||'-'),
+    'Especialidad: '+(ficha.especialidad||'-'),
+    'Tamaño de equipo: '+(ficha.equipo||'-'),
+    'Teléfono fijo: '+(ficha.telefono_fijo||'-'),
+    'Teléfono móvil: '+(ficha.telefono_movil||'-'),
+    'Email: '+(ficha.email||'-'),
+    'Pack: '+(ficha.pack||'-'),
+    'Enlace CRM demo: '+(ficha.crmlink||'-'),
+    'Fecha demo: '+(ficha.fecha||'-')+' · Hora: '+(ficha.hora||'-'),
+    'Termómetro · Importancia (1-10): '+(ficha.importancia||'-'),
+    'Termómetro · Confianza (1-10): '+(ficha.confianza||'-'),
+    'Objeciones en Llamada 1: '+(ficha.objeciones1.length ? ficha.objeciones1.join(', ') : '-'),
+    'Objeciones en Llamada 2: '+(ficha.objeciones2.length ? ficha.objeciones2.join(', ') : '-'),
+    'Bloque donde se detuvo Llamada 1: '+(ficha.bloqueParada1||'-'),
+    'Bloque donde se detuvo Llamada 2: '+(ficha.bloqueParada2||'-'),
+    'Notas de cierre (Llamada 2): '+(ficha.notas||'-'),
+    '',
+    'Generado desde la Guía de Ventas LEGALITUM · Closer Search'
+  ];
+}
+function renderExport(){
+  const lines = getFichaLines();
+  document.getElementById('exportBox').textContent = lines.join('\n');
+}
+function copyExport(){
+  const txt = document.getElementById('exportBox').textContent;
+  navigator.clipboard.writeText(txt).then(()=>{
+    const box = document.getElementById('exportBox');
+    box.textContent = '✓ Copiado al portapapeles\n\n'+box.textContent;
+  });
+}
+function exportPDF(){
+  renderExport();
+  if(!window.jspdf){ alert('No se pudo cargar la librería de PDF. Comprueba tu conexión a internet e inténtalo de nuevo.'); return; }
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({unit:'pt', format:'a4'});
+  const marginX = 48;
+  let y = 56;
+  doc.setFont('helvetica','bold');
+  doc.setFontSize(16);
+  doc.setTextColor(20,20,20);
+  doc.text('CLOSER SEARCH', marginX, y);
+  doc.setFontSize(10);
+  doc.setFont('helvetica','normal');
+  doc.setTextColor(120,95,30);
+  y += 16;
+  doc.text('Ficha del despacho · Guía de Ventas LEGALITUM', marginX, y);
+  y += 8;
+  doc.setDrawColor(180,150,60);
+  doc.line(marginX, y, 547, y);
+  y += 26;
+
+  doc.setTextColor(30,30,30);
+  const lines = getFichaLines().filter(l => l && !l.startsWith('==='));
+  lines.forEach(line=>{
+    if(!line){ y += 8; return; }
+    const parts = line.split(': ');
+    if(parts.length >= 2 && parts[0].length < 40){
+      doc.setFont('helvetica','bold');
+      doc.setFontSize(10);
+      const label = parts[0]+': ';
+      doc.text(label, marginX, y);
+      const labelWidth = doc.getTextWidth(label);
+      doc.setFont('helvetica','normal');
+      const value = parts.slice(1).join(': ');
+      const wrapped = doc.splitTextToSize(value, 500 - labelWidth);
+      doc.text(wrapped, marginX + labelWidth, y);
+      y += 16 * wrapped.length;
+    } else {
+      doc.setFont('helvetica','italic');
+      doc.setFontSize(9);
+      doc.setTextColor(140,140,140);
+      doc.text(line, marginX, y);
+      doc.setTextColor(30,30,30);
+      y += 14;
+    }
+    if(y > 780){ doc.addPage(); y = 56; }
+  });
+
+  const fileName = 'ficha-'+(ficha.despacho ? ficha.despacho.replace(/\s+/g,'_') : 'despacho')+'.pdf';
+  doc.save(fileName);
+}
+</script>
+</body>
+</html>
